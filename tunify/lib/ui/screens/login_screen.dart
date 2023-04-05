@@ -40,35 +40,31 @@
 //               padding: const EdgeInsets.all(16.0),
 //               child: Form(
 //                 key: _formKey,
-                
+
 //                 child: Column(
-                  
+
 //                   crossAxisAlignment: CrossAxisAlignment.stretch,
 //                   children: [
-                    
+
 //                     TextField(
-                    
-                      
+
 //                       decoration: InputDecoration(hintText: "hello",  border: new OutlineInputBorder(
 //                             borderSide: new BorderSide(
 //                               color: Colors.teal,),)
 //     //                          ,fillColor: Colors.green,border: OutlineInputBorder(
-                        
 
 //     //  borderRadius: BorderRadius.all(
-      
-      
-//     //      Radius.circular(20.0), 
-        
+
+//     //      Radius.circular(20.0),
+
 // //     //  ),
 // //      borderSide: BorderSide(color: Colors.green)
 // // ),
 
-
 // ),
-                      
+
 //                       // validator: (value) {
-                        
+
 //                       //   TextStyle(color: Colors.white);
 //                       //   if (value!.isEmpty) {
 //                       //     return 'Please enter your email';
@@ -84,7 +80,7 @@
 //                        style: ElevatedButton.styleFrom(
 //                        backgroundColor: Colors.green, // Set background color here
 //                         ),
-  
+
 //                       child: Text(
 //                         'Sign In',
 //                         style: TextStyle(color: Colors.white),
@@ -107,9 +103,6 @@
 //   }
 // }
 
-
-
-
 import 'package:flutter/material.dart';
 
 class Login_Screen extends StatelessWidget {
@@ -120,93 +113,92 @@ class Login_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Center(
+      body: Center(
+        child: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(border: Border.all(width: 4,color: Colors.white12)),
+            width: 500,
+            height: 520,
+          
             child: Column(
-              
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                
+                //  Text('Tunify',style: TextStyle(fontSize: 40.0,color: Colors.white),),
+                //               Text(
+
                 Text(
                   'Tunify',
                   style: TextStyle(
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white
-                  ),
+                      height: -1.0,
+                      fontSize: 38.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
-                Column(
-                  
-                  children: [
-                    
-                 
-                 TextField(
+
+                //               ),
+                //               Icon(Icons.music_note,color: Colors.green,),
+                TextField(
                   controller: usernameController,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: BorderSide(color: Colors.green)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(color: Colors.green)),
+                      labelText: 'Username',
+                      labelStyle: TextStyle(color: Colors.green)),
+                ),
+                SizedBox(height: 30.0),
+                TextField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(color: Colors.green)
-                    ),
+                        borderRadius: BorderRadius.circular(25.0),
+                        borderSide: BorderSide(color: Colors.green)),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide(color: Colors.green)
-                    ),
-                    labelText: 'Username',labelStyle: TextStyle(color: Colors.green)
-                  ),
-                ),
-                SizedBox(height: 20.0),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    
-                    filled: true,
-                    fillColor: Colors.white,
-                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(color: Colors.green)
-                    ),
-                    border: OutlineInputBorder(
-                      
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     labelText: 'Password',
                   ),
                   obscureText: true,
-                ), ],
                 ),
                 Column(
                   children: [
-                    SizedBox(height: 20.0),
-                
-                SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                    onPrimary: Colors.white,
-                    
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                      
+                    SizedBox(height: 40.0),
+                    SizedBox(
+                      width: 350,
+                      height: 60,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green,
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Perform login action here
+                        },
+                        child: Text('LOG IN'),
+                      ),
                     ),
-                    
-                  ),
-                    onPressed: () {
-                      // Perform login action here
-                    },
-                    child: Text('LOG IN'),
-                  ),
-                ),  ],
+                  ],
                 ),
+                SizedBox(
+                    height: 100,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text('Forgot Password ?'),
+                    ))
               ],
             ),
           ),
