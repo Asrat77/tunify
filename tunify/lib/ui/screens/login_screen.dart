@@ -189,6 +189,7 @@ class Login_Screen extends StatelessWidget {
                   width: 200,
                   height: 50,
                   child: ElevatedButton(
+
                   style: ElevatedButton.styleFrom(
                     primary: Colors.green,
                     onPrimary: Colors.white,
@@ -201,10 +202,16 @@ class Login_Screen extends StatelessWidget {
                   ),
                     onPressed: () {
                       // Perform login action here
+                      Navigator.pushNamed(context, "/home");
                     },
                     child: Text('LOG IN'),
                   ),
-                ),  ],
+
+                ),
+                TextButton(onPressed: //to do add push named to sign up screen.
+                    , child: Text("No account yet?"))
+
+                  ],
                 ),
               ],
             ),
