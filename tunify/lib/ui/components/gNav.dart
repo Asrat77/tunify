@@ -9,7 +9,9 @@ Widget buildGnav(BuildContext context) {
       child: GNav(
         tabs: [
           GButton(
-            onPressed: () {},
+            onPressed: () {
+               Navigator.pushNamed(context, "/home");
+            },
             icon: Icons.home,
             text: 'Home',
             gap: 8,
