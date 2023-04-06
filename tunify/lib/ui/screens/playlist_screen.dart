@@ -107,6 +107,7 @@ class _PlaylistState extends State<Playlist> {
       context,
       MaterialPageRoute(builder: (context) => Login_Screen()),
     );
+          //  Navigator.pushNamed(context, "/playlist");
             },
             icon: Icons.account_circle,
             text: 'User',

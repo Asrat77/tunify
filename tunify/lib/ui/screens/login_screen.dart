@@ -40,35 +40,31 @@
 //               padding: const EdgeInsets.all(16.0),
 //               child: Form(
 //                 key: _formKey,
-                
+
 //                 child: Column(
-                  
+
 //                   crossAxisAlignment: CrossAxisAlignment.stretch,
 //                   children: [
-                    
+
 //                     TextField(
-                    
-                      
+
 //                       decoration: InputDecoration(hintText: "hello",  border: new OutlineInputBorder(
 //                             borderSide: new BorderSide(
 //                               color: Colors.teal,),)
 //     //                          ,fillColor: Colors.green,border: OutlineInputBorder(
-                        
 
 //     //  borderRadius: BorderRadius.all(
-      
-      
-//     //      Radius.circular(20.0), 
-        
+
+//     //      Radius.circular(20.0),
+
 // //     //  ),
 // //      borderSide: BorderSide(color: Colors.green)
 // // ),
 
-
 // ),
-                      
+
 //                       // validator: (value) {
-                        
+
 //                       //   TextStyle(color: Colors.white);
 //                       //   if (value!.isEmpty) {
 //                       //     return 'Please enter your email';
@@ -84,7 +80,7 @@
 //                        style: ElevatedButton.styleFrom(
 //                        backgroundColor: Colors.green, // Set background color here
 //                         ),
-  
+
 //                       child: Text(
 //                         'Sign In',
 //                         style: TextStyle(color: Colors.white),
@@ -107,10 +103,8 @@
 //   }
 // }
 
-
-
-
 import 'package:flutter/material.dart';
+import 'package:tunify/ui/screens/signUpScreen.dart';
 
 class Login_Screen extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
@@ -128,89 +122,83 @@ class Login_Screen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                
                 Text(
                   'Tunify',
                   style: TextStyle(
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white
-                  ),
-                ),
-                Column(
-                  
-                  children: [
-                    
-                 
-                 TextField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(color: Colors.green)
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide(color: Colors.green)
-                    ),
-                    labelText: 'Username',labelStyle: TextStyle(color: Colors.green)
-                  ),
-                ),
-                SizedBox(height: 20.0),
-                TextField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    
-                    filled: true,
-                    fillColor: Colors.white,
-                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: BorderSide(color: Colors.green)
-                    ),
-                    border: OutlineInputBorder(
-                      
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    labelText: 'Password',
-                  ),
-                  obscureText: true,
-                ), ],
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
                 Column(
                   children: [
+                    TextField(
+                      controller: usernameController,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide: BorderSide(color: Colors.green)),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                              borderSide: BorderSide(color: Colors.green)),
+                          labelText: 'Username',
+                          labelStyle: TextStyle(color: Colors.green)),
+                    ),
                     SizedBox(height: 20.0),
-                
-                SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: ElevatedButton(
-
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                    onPrimary: Colors.white,
-                    
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                      
+                    TextField(
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: BorderSide(color: Colors.green)),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        labelText: 'Password',
+                      ),
+                      obscureText: true,
                     ),
-                    
-                  ),
-                    onPressed: () {
-                      // Perform login action here
-                      Navigator.pushNamed(context, "/home");
-                    },
-                    child: Text('LOG IN'),
-                  ),
-
+                  ],
                 ),
-                TextButton(onPressed: //to do add push named to sign up screen.
-                    , child: Text("No account yet?"))
+                Column(
+                  children: [
+                    SizedBox(height: 0),
 
+                    SizedBox(
+                      width: 200,
+                      height: 50,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green,
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                        ),
+                        onPressed: () {
+                          // Perform login action here
+                          Navigator.pushNamed(context, "/home");
+                        },
+                        child: Text('LOG IN'),
+                      ),
+                    ),
+                    //to do add push named to sign up screen.
+                    // , child: Text("No account yet?"))
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const signUpscreen()),
+                          );
+                        },
+                        child: Text("No account yet?")),
                   ],
                 ),
               ],
