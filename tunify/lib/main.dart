@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
+import 'package:tunify/ui/screens/playlist_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:  Login_Screen(),
+      home:  Playlist(),
     );
   }
 }
