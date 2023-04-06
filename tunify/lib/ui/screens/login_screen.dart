@@ -113,99 +113,96 @@ class Login_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text(
-                  'Tunify',
-                  style: TextStyle(
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                Column(
-                  children: [
-                    TextField(
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25.0),
-                              borderSide: BorderSide(color: Colors.green)),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              borderSide: BorderSide(color: Colors.green)),
-                          labelText: 'Username',
-                          labelStyle: TextStyle(color: Colors.green)),
-                    ),
-                    SizedBox(height: 20.0),
-                    TextField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(color: Colors.green)),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        labelText: 'Password',
-                      ),
-                      obscureText: true,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    SizedBox(height: 0),
 
-                    SizedBox(
-                      width: 200,
-                      height: 50,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                          onPrimary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32),
-                          ),
-                        ),
-                        onPressed: () {
-                          // Perform login action here
-                          Navigator.pushNamed(context, "/home");
-                        },
-                        child: Text('LOG IN'),
-                      ),
+
+backgroundColor: Colors.black,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    "Tunify",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: MediaQuery.of(context).size.height * .055,
                     ),
-                    //to do add push named to sign up screen.
-                    // , child: Text("No account yet?"))
-                    TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const signUpscreen()),
-                          );
-                        },
-                        child: Text("No account yet?")),
-                  ],
+                  ),
                 ),
+                
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .045,
+                ),
+                TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                    hintText: "user name",
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .045,
+                ),
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      
+                    ),
+                    hintText: "Password",
+                  ),
+                ),
+                  
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .045,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: RawMaterialButton(
+                    fillColor: Color.fromARGB(255, 21, 80, 22),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
+                    onPressed: () {},
+                    child: const Text(
+                      "Sign in",
+                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .035,
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => signUpscreen()),
+                        );
+                      },
+                      child: Text("no account yet ?")),
+                )
               ],
             ),
           ),
         ),
       ),
+
+
+
     );
   }
 }
