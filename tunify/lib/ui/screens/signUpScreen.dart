@@ -95,6 +95,19 @@ class _signUpscreenState extends State<signUpscreen> {
                     hintText: "Password",
                   ),
                 ),
+                  SizedBox(
+                  height: MediaQuery.of(context).size.height * .055,
+                ),
+                TextField(
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      hintText: "acc.token",
+                    )),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * .045,
                 ),
