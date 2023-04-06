@@ -118,7 +118,7 @@ class Login_Screen extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.white24),borderRadius: BorderRadius.circular(10)),
             width: 500,
-            height: 540,
+            height: 560,
           
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
