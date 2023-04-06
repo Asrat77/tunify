@@ -1,24 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-// import 'package:flutter/src/widgets/placeholder.dart';
-
-// class SignUp_S extends StatefulWidget {
-//   const SignUp_S({super.key});
-
-//   @override
-//   State<SignUp_S> createState() => _SignUp_SState();
-// }
-
-// class _SignUp_SState extends State<SignUp_S> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Container(
-
-//     ));
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -95,7 +74,7 @@ class _signUpscreenState extends State<signUpscreen> {
                     hintText: "Password",
                   ),
                 ),
-                  SizedBox(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * .055,
                 ),
                 TextField(
@@ -133,7 +112,8 @@ class _signUpscreenState extends State<signUpscreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Login_Screen()),
+                          MaterialPageRoute(
+                              builder: (context) => Login_Screen()),
                         );
                       },
                       child: Text("Already have an Account?Log In")),
