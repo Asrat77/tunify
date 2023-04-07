@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tunify/services/auth.dart';
 import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
@@ -11,23 +13,23 @@ void main() async {
   runApp(const MyApp());
 }
 
-class AuthWrapper extends StatelessWidget {
-  const AuthWrapper({Key? key}) : super(key: key);
+// class AuthWrapper extends StatelessWidget {
+//   const AuthWrapper({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-      stream: FirebaseAuth.instance.authStateChanges(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return const Playlist();
-        } else {
-          return const Login_Screen();
-        }
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<User?>(
+//       stream: FirebaseAuth.instance.authStateChanges(),
+//       builder: (context, snapshot) {
+//         if (snapshot.hasData) {
+//           return const Playlist();
+//         } else {
+//           return const Login_Screen();
+//         }
+//       },
+//     );
+//   }
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -35,21 +37,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return const Playlist();
-            } else {
-              return const Login_Screen();
-            }
-          },
+    return MultiProvider(
+      providers: [
+        Provider<Auth>(
+          create: (_) => Auth(),
         ),
-        //initialRoute: "/hom",
-        routes: {
-          "/home": (context) => Login_Screen(),
-          "/pl": (context) => Playlist(),
-        });
+      ],
+      child: MaterialApp(
+          home: StreamBuilder<User?>(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return const Playlist();
+              } else {
+                return const Login_Screen();
+              }
+            },
+          ),
+          //initialRoute: "/hom",
+          routes: {
+            "/home": (context) => Login_Screen(),
+            "/pl": (context) => Playlist(),
+          }),
+    );
   }
 }
