@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+
 import 'package:tunify/data/models/user.dart';
 
 class Auth {
@@ -8,12 +9,7 @@ class Auth {
     if (user == null) {
       return null;
     }
-    return User(
-        userId: user.uid,
-        username: user.displayName,
-        email: user.email,
-        password: user.email,
-        profile_picture_url: user.photoURL);
+    return User(user.uid, user.email);
   }
 
   Stream<User?> get user {
@@ -24,6 +20,14 @@ class Auth {
     final result = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
 
+    return _fireBaseUser(result.user);
+  }
+
+  Future<User?> handleSignInEmail(String email, String password) async {
+    //7
+    final result = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
+    //8
     return _fireBaseUser(result.user);
   }
 
