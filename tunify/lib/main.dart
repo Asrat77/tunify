@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(initialRoute: "/", routes: {
       "/": (context) => Login_Screen(),
       "/pl": (context) => Playlist(),
-         "/home": (context) => AutoScrollableCards(),
+         "/home": (context) => Home_Screen(),
     });
   }
 }
