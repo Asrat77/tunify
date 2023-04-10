@@ -13,13 +13,13 @@ Widget buildGnav(BuildContext context) {
                Navigator.pushNamed(context, "/home");
             },
             icon: Icons.home,
-           iconColor: Colors.white,
+           iconColor: Colors.green,
             text: 'Home',textColor: Colors.white,
             gap: 8,
           ),
           GButton(
             icon: Icons.search,
-          iconColor: Colors.white,
+          iconColor: Colors.green,
             
             text: 'Search',textColor: Colors.white,
             gap: 8,
@@ -27,7 +27,7 @@ Widget buildGnav(BuildContext context) {
           GButton(
           
             icon: Icons.playlist_add,
-            iconColor: Colors.white,
+            iconColor: Colors.green,
             
             text: 'playlist',textColor: Colors.white,
             gap: 8,
@@ -40,7 +40,7 @@ Widget buildGnav(BuildContext context) {
               //  Navigator.pushNamed(context, "/playlist");
             },
             icon: Icons.account_circle,
-             iconColor: Colors.white,
+             iconColor: Colors.green,
             text: 'User',textColor: Colors.white,
             gap: 8,
           )

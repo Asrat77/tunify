@@ -24,20 +24,26 @@ class _Home_ScreenState extends State<Home_Screen> {
   final List<String> _subtitles = [
     'description description  ',
     'description description  ',
+      'description description  ',
+    'TINKY winky (tito)',
     'description description ',
-    'description description  ',
+    
     'description description  ',
   ];
 
-  // final List<String> _images = [
-  //   '    https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
+  final List<String> _images = [
 
-  //   'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
-  //   'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
+  
 
-  //   'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
-  //   'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-  // ];
+    'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
+    'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
+
+    'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
+    'https://nypost.com/wp-content/uploads/sites/2/2018/04/180406-teletubbie-dies-alcoholism-alt-feature-1.jpg?quality=75&strip=all',
+    'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
+    'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
+     
+  ];
 
   final double _cardWidth = 150;
 
@@ -100,8 +106,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Image.network(
-                                  'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-                                  // _images[index],
+                                 
+                                  _images[index],
 
                                   width: _cardWidth,
                                   fit: BoxFit.cover,
@@ -141,9 +147,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                     },
                   ),
                 ),
+
+
               ],
             ),
           ),
+
+Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30),),
+
+
+
   Expanded(
             
             child: ListView.builder(
@@ -207,71 +220,28 @@ class _Home_ScreenState extends State<Home_Screen> {
                               ],
                             )),
                       ),
+                      
                     ],
+                    
                   );
+                  
                 }, ),
                 
           ),
   
-     SizedBox(
-         height: 100,
-         width: 400,
-         child: Card(
-           
-           color: Colors.white12,
-             child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               crossAxisAlignment: CrossAxisAlignment.start,
-               
-               children: [
-                 
-                 SizedBox(
-                   width: MediaQuery.of(context).size.width*0.24,
-                   height: MediaQuery.of(context).size.height*0.24,
-                   child: Image.network(
-                                     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-                        
-                          
-                                     // _images[index],
-                                   ),
-                                   
-                 ),
-
+     
                   
 
-
+Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30),),
                      
 
-                  Column(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                                "new playlist",
-                                 style: TextStyle(
-                                   fontWeight: FontWeight.bold,
-                                   fontSize: 8,
-                                   color: Colors.white,
-                                 ),
-                               ),
-                               Text(
-                             "subtitles,description",
-                             style: TextStyle(color: Colors.white),
-                           ),
-                          
-
-                    ],
-                  ), 
-                        Icon(Icons.add_sharp,color: Colors.green,)    
-               ],
-             )),
 
 
-
-       ),
+       
      
          Expanded(
            child: ListView.builder(
-             itemCount: 2,
+             itemCount:2,
              itemBuilder: (BuildContext context, int index) {
              return
               Card(
