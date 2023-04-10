@@ -6,6 +6,7 @@ import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tunify/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,10 +55,10 @@ class MyApp extends StatelessWidget {
               }
             },
           ),
-          //initialRoute: "/hom",
+          initialRoute: "/home",
           routes: {
-            "/home": (context) => Login_Screen(),
-            "/pl": (context) => Playlist(),
+            "/home": (context) => const Login_Screen(),
+            "/pl": (context) => const Playlist(),
           }),
     );
   }

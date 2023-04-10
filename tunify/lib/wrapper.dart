@@ -13,18 +13,14 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final authService = Provider.of<Auth>(context);
     return StreamBuilder<User?>(
-        stream: authService.user,
-        builder: (_, AsyncSnapshot<User?> snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            final User? user = snapshot.data;
-            return user == null ? const Login_Screen() : const Playlistpage();
-          } else {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-        });
+      stream: authService.user,
+      builder: (_, AsyncSnapshot<User?> snapshot) {
+        if (snapshot.hasData) {
+          return const Playlistpage();
+        } else {
+          return const Login_Screen();
+        }
+      },
+    );
   }
 }

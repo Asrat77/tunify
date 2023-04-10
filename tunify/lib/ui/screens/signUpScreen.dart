@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
+import 'package:tunify/services/auth.dart';
 
 class signUpscreen extends StatefulWidget {
   const signUpscreen({super.key});
@@ -11,33 +15,52 @@ class signUpscreen extends StatefulWidget {
 }
 
 class _signUpscreenState extends State<signUpscreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final fullnameController = TextEditingController();
+
+  final _formkey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context);
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: MediaQuery.of(context).size.height * .055,
+      body: Form(
+        key: _formkey,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.height * .055,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .055,
-                ),
-                TextField(
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .055,
+                  ),
+
+                  TextField(
+                    //name text field
                     keyboardType: TextInputType.name,
+                    controller: fullnameController,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -45,80 +68,103 @@ class _signUpscreenState extends State<signUpscreen> {
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       hintText: "Full Name",
-                    )),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .045,
-                ),
-                TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
                     ),
-                    hintText: "Email",
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .045,
-                ),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    hintText: "Password",
+
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .045,
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .055,
-                ),
-                TextField(
-                    keyboardType: TextInputType.name,
+                  TextFormField(
+                    //email textfeild
+                    keyboardType: TextInputType.emailAddress,
+                    controller: emailController, //email controller
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
-                      hintText: "acc.token",
-                    )),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .045,
-                ),
-                Container(
-                  width: double.infinity,
-                  child: RawMaterialButton(
-                    fillColor: Color.fromARGB(255, 21, 80, 22),
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0)),
-                    onPressed: () {},
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      hintText: "Email",
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "Email is required";
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .045,
+                  ),
+                  TextFormField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      hintText: "Password",
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password is required';
+                      } else if (value.length < 6) {
+                        return 'Password should be at least 6 characters';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .055,
+                  ),
+                  // TextField(
+                  //     keyboardType: TextInputType.name,
+                  //     decoration: InputDecoration(
+                  //       filled: true,
+                  //       fillColor: Colors.white,
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(25.0),
+                  //       ),
+                  //       hintText: "acc.token",
+                  //     )),
+                  // SizedBox(
+                  // height: MediaQuery.of(context).size.height * .045,
+                  // ),
+                  Container(
+                    width: double.infinity,
+                    child: RawMaterialButton(
+                      fillColor: Color.fromARGB(255, 21, 80, 22),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0)),
+                      onPressed: () {
+                        auth.handleSignUp(
+                            emailController.text, passwordController.text);
+                      },
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .035,
-                ),
-                Center(
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Login_Screen()),
-                        );
-                      },
-                      child: Text("Already have an Account?Log In")),
-                )
-              ],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .035,
+                  ),
+                  Center(
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Login_Screen()),
+                          );
+                        },
+                        child: Text("Already have an Account?Log In")),
+                  )
+                ],
+              ),
             ),
           ),
         ),
