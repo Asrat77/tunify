@@ -5,7 +5,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 Widget buildGnav(BuildContext context) {
   return Container(
-      color: Color.fromARGB(255, 22, 73, 23),
+      color: Colors.black,
       child: GNav(
         tabs: [
           GButton(
@@ -13,20 +13,26 @@ Widget buildGnav(BuildContext context) {
                Navigator.pushNamed(context, "/home");
             },
             icon: Icons.home,
-            text: 'Home',
+           iconColor: Colors.white,
+            text: 'Home',textColor: Colors.white,
             gap: 8,
           ),
           GButton(
             icon: Icons.search,
-            text: 'Search',
+          iconColor: Colors.white,
+            
+            text: 'Search',textColor: Colors.white,
             gap: 8,
           ),
           GButton(
+          
             icon: Icons.playlist_add,
-            text: 'playlist',
+            iconColor: Colors.white,
+            
+            text: 'playlist',textColor: Colors.white,
             gap: 8,
             onPressed: () {
-              Navigator.pushNamed(context, "/pl");
+             
             },
           ),
           GButton(
@@ -34,7 +40,8 @@ Widget buildGnav(BuildContext context) {
               //  Navigator.pushNamed(context, "/playlist");
             },
             icon: Icons.account_circle,
-            text: 'User',
+             iconColor: Colors.white,
+            text: 'User',textColor: Colors.white,
             gap: 8,
           )
         ],

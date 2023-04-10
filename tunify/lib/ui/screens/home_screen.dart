@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:tunify/ui/components/gNav.dart';
 
 class Home_Screen extends StatefulWidget {
   @override
@@ -71,7 +72,7 @@ class _Home_ScreenState extends State<Home_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -93,7 +94,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                           width: _cardWidth,
                       
                           child: Card(
-                            color: Color.fromARGB(255, 51, 129, 54),
+                            color: Colors.black,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,18 +148,18 @@ class _Home_ScreenState extends State<Home_Screen> {
             
             child: ListView.builder(
                
-                itemCount: 4,
+                itemCount:_titles.length,
                 scrollDirection: Axis.horizontal,
                 
                 itemBuilder: (BuildContext context, index) {
                   return Column(
                     children: [
                       SizedBox(
-                        height: 200,
+                        height: 180,
                         width: 200,
                         child: Card(
                           
-                          color: Colors.white30,
+                          color: Colors.white10,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,12 +286,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                    SizedBox(
                      width: MediaQuery.of(context).size.width*0.24,
                      height: MediaQuery.of(context).size.height*0.13,
-                    //  child: Image.network(
-                    //                    'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
+                     child: Image.network(
+                                       'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
                           
                             
-                    //                    // _images[index],
-                    //                  ),
+                                       // _images[index],
+                                     ),
                                      
                    ),
          
@@ -325,17 +326,19 @@ class _Home_ScreenState extends State<Home_Screen> {
             },
            ),
          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width*0.52,
-             height: MediaQuery.of(context).size.height*0.081,
-            child: ElevatedButton(onPressed: (){},
+          // SizedBox(
+          //   width: MediaQuery.of(context).size.width*0.52,
+          //    height: MediaQuery.of(context).size.height*0.081,
+          //   child: ElevatedButton(onPressed: (){},
             
-             child:Text('Take a quiz') ,
-             style:
-             ElevatedButton.styleFrom(backgroundColor: Colors.green,),
-                  ),
-          ),  ],
+          //    child:Text('Take a quiz') ,
+          //    style:
+          //    ElevatedButton.styleFrom(backgroundColor: Colors.green,),
+          //         ),
+          // ), 
+           ],
       ),
+       bottomNavigationBar: buildGnav(context)
     );
   }
 }
