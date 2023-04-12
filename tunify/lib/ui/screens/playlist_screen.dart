@@ -77,6 +77,6 @@ class _PlaylistState extends State<Playlist> {
             ],
           ),
         ),
-        bottomNavigationBar: buildGnav(context));
+        bottomNavigationBar: buildgnav(context));
   }
 }

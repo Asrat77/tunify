@@ -25,7 +25,7 @@ class _Home_ScreenState extends State<Home_Screen> {
     'description description  ',
     'description description  ',
       'description description  ',
-    'TINKY winky (tito)',
+    'description description  ',
     'description description ',
     
     'description description  ',
@@ -35,11 +35,11 @@ class _Home_ScreenState extends State<Home_Screen> {
 
   
 
-    'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
+    'https://assets.capitalfm.com/2013/13/william--willpower-1365154671-custom-0.png',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
 
     'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
-    'https://nypost.com/wp-content/uploads/sites/2/2018/04/180406-teletubbie-dies-alcoholism-alt-feature-1.jpg?quality=75&strip=all',
+
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
      
@@ -308,7 +308,7 @@ Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30),),
           // ), 
            ],
       ),
-       bottomNavigationBar: buildGnav(context)
+       bottomNavigationBar: buildgnav(context)
     );
   }
 }
