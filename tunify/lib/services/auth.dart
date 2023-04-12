@@ -27,6 +27,8 @@ class Auth {
     //7
     final result = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
+    String userToken = await result.user!.getIdToken();
+    await saveUserToken(userToken);
     //8
     return _fireBaseUser(result.user);
   }
