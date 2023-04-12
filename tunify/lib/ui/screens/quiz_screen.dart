@@ -14,7 +14,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  String? _mood;
+  int _selectedIndex = -1;
   bool _isLoading = false;
   final List<String> _moodOptions = [
     'Happy',
@@ -40,10 +40,13 @@ class _QuizPageState extends State<QuizPage> {
       _isLoading = false;
     });
     await launch(playlistUrl);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('Playlist generated successfully! Enjoy your music!'),
+    ));
   }
 
-    final PageController _pageController2 = PageController();
- final PageController _pageController3 = PageController();
+  final PageController _pageController2 = PageController();
+  final PageController _pageController3 = PageController();
 
   final List<String> _titles = [
     'playlist1',
@@ -56,25 +59,18 @@ class _QuizPageState extends State<QuizPage> {
   final List<String> _subtitles = [
     'description description  ',
     'description description  ',
-      'description description  ',
+    'description description  ',
     'description description  ',
     'description description ',
-    
     'description description  ',
   ];
 
   final List<String> _images = [
-
-  
-
     'https://assets.capitalfm.com/2013/13/william--willpower-1365154671-custom-0.png',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-
     'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
-
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-     
   ];
 
   final double _cardWidth = 150;
@@ -119,119 +115,134 @@ class _QuizPageState extends State<QuizPage> {
         ),
       ),
       body: Center(
-        
-        child:
-        
-        
-         Column(
-          
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
               child: PageView.builder(
-                
-                      controller: _pageController1,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _titles.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            width: _cardWidth,
-                            height: 50,
-                        
-                            child: Card(
-                              color: Colors.black,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Image.network(
-                                   
-                                    _images[index],
-            
-                                    width: _cardWidth,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text(
-                                              _titles[index],
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            SizedBox(height: 4),
-                                            Text(
-                                              _subtitles[index],
-                                              style: TextStyle(color: Colors.white),
-                                            ),
-                                          ],
+                controller: _pageController1,
+                scrollDirection: Axis.horizontal,
+                itemCount: _titles.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: _cardWidth,
+                      height: 50,
+                      child: Card(
+                        color: Colors.black,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Image.network(
+                              _images[index],
+                              width: _cardWidth,
+                              fit: BoxFit.cover,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        _titles[index],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white,
                                         ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        _subtitles[index],
+                                        style: TextStyle(color: Colors.white),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ),
-                        );
-                      },
+                          ],
+                        ),
+                      ),
                     ),
-            ),
-                  const Text('fhggjv',style: TextStyle(fontSize: 30),),
-            // Text('create playlist',style: TextStyle(fontSize: 40),),
-            Padding(
-              padding: const EdgeInsets.only(top:15.0, bottom: 250),
-              child: SizedBox(
-                
-                width: 350,
-                child: Container(
-                  decoration: BoxDecoration(color: Color.fromARGB(255, 51, 51, 51)),
-                  child: DropdownButton<String>(
-                    
-                    borderRadius: BorderRadius.circular(10),
-                   dropdownColor: Color.fromARGB(255, 84, 131, 75),
-                               
-                    
-                    value: _mood,
-                    hint: Padding(
-                      padding: const EdgeInsets.only(left:100.0),
-                      child: Text('Select your mood',style: TextStyle(color: Colors.white),),
-                    ),
-                    
-                    onChanged: (value) {
-                      setState(() {
-                        _mood = value!;
-                      });
-                    
-                    },
-                    items: _moodOptions.map((String mood) {
-                      return DropdownMenuItem<String>(
-                       
-                        value: mood,
-                        child: Text(mood,style: TextStyle(color: Colors.white),),
-                      );
-                    }).toList(),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
-           
-          
+            const Text(
+              'Your current mood',
+              style: TextStyle(fontSize: 30),
+            ),
+            // Text('create playlist',style: TextStyle(fontSize: 40),),
+            // Padding(
+            //   padding: const EdgeInsets.only(top:15.0, bottom: 250),
+            //   child: SizedBox(
+
+            //     width: 350,
+            //     child: Container(
+            //       decoration: BoxDecoration(color: Color.fromARGB(255, 51, 51, 51)),
+            //       child: DropdownButton<String>(
+
+            //         borderRadius: BorderRadius.circular(10),
+            //        dropdownColor: Color.fromARGB(255, 84, 131, 75),
+
+            //         value: _mood,
+            //         hint: Padding(
+            //           padding: const EdgeInsets.only(left:100.0),
+            //           child: Text('Select your mood',style: TextStyle(color: Colors.white),),
+            //         ),
+
+            //         onChanged: (value) {
+            //           setState(() {
+            //             _mood = value!;
+            //           });
+
+            //         },
+            //         items: _moodOptions.map((String mood) {
+            //           return DropdownMenuItem<String>(
+
+            //             value: mood,
+            //             child: Text(mood,style: TextStyle(color: Colors.white),),
+            //           );
+            //         }).toList(),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: _moodOptions.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    leading: Radio(
+                      groupValue: _selectedIndex,
+                      onChanged: (int? value) {
+                        setState(() {
+                          _selectedIndex = value!;
+                        });
+                      },
+                      value: index,
+                    ),
+                    title: Text(_moodOptions[index]),
+                  );
+                },
+              ),
+            ),
+
             Padding(
-              padding: const EdgeInsets.only(bottom:41.0),
+              padding: const EdgeInsets.only(bottom: 41.0),
               child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.black,fixedSize: Size(200, 50),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  fixedSize: Size(200, 50),
+                ),
                 onPressed: () {
                   _isLoading ? null : _generatePlaylist();
                 },

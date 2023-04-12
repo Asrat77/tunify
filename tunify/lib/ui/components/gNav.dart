@@ -49,9 +49,10 @@ Widget buildgnav(BuildContext context) {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.search_off_outlined,
+              Icons.add_circle,
+              size:40 ,
             ),
-            label: 'search',
+            label: 'create',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.playlist_add_circle),
