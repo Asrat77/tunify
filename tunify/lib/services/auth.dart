@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tunify/data/models/user.dart';
 
 class Auth {
@@ -29,6 +29,16 @@ class Auth {
         email: email, password: password);
     //8
     return _fireBaseUser(result.user);
+  }
+  //save user token to shared_pref
+  Future<void> saveUserToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("userToken", token);
+  }
+  Future<String?> getUserToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString("userToken");
+
   }
 
   Future<void> logout() async {
