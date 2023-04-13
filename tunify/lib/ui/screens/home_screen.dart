@@ -153,7 +153,12 @@ class _Home_ScreenState extends State<Home_Screen> {
             ),
           ),
 
-Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30),),
+Row(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+        Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold ),),
+  ],
+),
 
 
 
@@ -232,7 +237,14 @@ Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30),),
      
                   
 
-Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30),),
+Row(
+  mainAxisAlignment: MainAxisAlignment.start,
+
+  children: [
+    
+        Text('Your top mixes',style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
+  ],
+),
                      
 
 

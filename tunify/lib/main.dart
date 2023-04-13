@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       "/": (context) => Login_Screen(),
       "/pl": (context) => Playlist(),
          "/home": (context) => Home_Screen(),
-           "/q": (context) => QuizPage(),
+         "/q": (context) => mode(),   
 
     });
   }
