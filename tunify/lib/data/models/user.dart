@@ -15,6 +15,12 @@
 class User {
   final String uid;
   final String? email;
+  String _token="";
 
   User(this.uid, this.email);
+
+  set token(String token){
+    this._token=token;
+  }
+
 }
