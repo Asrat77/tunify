@@ -66,7 +66,7 @@ class Login_Screen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0)),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/pl");
+                      Navigator.pushNamed(context, "/home");
                     },
                     child: const Text(
                       "Sign in",
