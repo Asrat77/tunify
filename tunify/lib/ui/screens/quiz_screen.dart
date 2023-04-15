@@ -264,15 +264,16 @@ import 'package:http/http.dart' as http;
 //   }
 // }
 
-
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:tunify/ui/components/questionary.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 class mode extends StatefulWidget {
   const mode({super.key});
@@ -280,12 +281,12 @@ class mode extends StatefulWidget {
   @override
   State<mode> createState() => _modeState();
 }
+
 bool _isDarkMode = false;
 
 class _modeState extends State<mode> {
-  
   @override
- int _selectedIndex = -1;
+  int _selectedIndex = -1;
   bool _isLoading = false;
   final List<String> _moodOptions = [
     'Happy',
@@ -316,20 +317,17 @@ class _modeState extends State<mode> {
     ));
   }
 
-
-
   final lightTheme = ThemeData(
-  brightness: Brightness.light,
-  primaryColor: Colors.green,
-  accentColor: Colors.yellow,
-  appBarTheme: AppBarTheme(color: Colors.white)
-);
+      brightness: Brightness.light,
+      primaryColor: Colors.green,
+      accentColor: Colors.yellow,
+      appBarTheme: AppBarTheme(color: Colors.white));
 
-final darkTheme = ThemeData(
-  brightness: Brightness.dark,
-  primaryColor: Colors.blueGrey[900],
-  accentColor: Colors.yellowAccent,
-);
+  final darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: Colors.blueGrey[900],
+    accentColor: Colors.yellowAccent,
+  );
 
   final PageController _pageController2 = PageController();
   final PageController _pageController3 = PageController();
@@ -390,143 +388,130 @@ final darkTheme = ThemeData(
   }
 
   Widget build(BuildContext context) {
-    
     return MaterialApp(
-      
-        title: 'My App',
-  theme: _isDarkMode ? darkTheme : lightTheme,
-  
- home: 
-  Scaffold(
-    appBar: AppBar(
-      actions: [
-        Switch(
-  value: _isDarkMode,
-  onChanged: (value) {
-    setState(() {
-      _isDarkMode = value;
-    });
-  },
-)
-      ],
-      
-  //     Switch(
-  //     value: _isDarkMode,
-  //     onChanged: (value) {
-  //       setState(() {
-  //         _isDarkMode = value;
-  //       });
-  //     },
-  // )
-    ),
-    
-    body: 
-  
-   Column(
-     children: [
-       Expanded(
-                  child: PageView.builder(
-                    controller: _pageController1,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _titles.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width: _cardWidth,
-                          height: 50,
-                          child: Card(
-                            color: Colors.black,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Image.network(
-                                  _images[index],
-                                  width: _cardWidth,
-                                  fit: BoxFit.cover,
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            _titles[index],
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          SizedBox(height: 4),
-                                          Text(
-                                            _subtitles[index],
-                                            style: TextStyle(color: Colors.white),
-                                          ),
-                                        ],
+      title: 'My App',
+      theme: _isDarkMode ? darkTheme : lightTheme,
+      home: Scaffold(
+        appBar: AppBar(
+          actions: [
+            Switch(
+              value: _isDarkMode,
+              onChanged: (value) {
+                setState(() {
+                  _isDarkMode = value;
+                });
+              },
+            )
+          ],
+
+          //     Switch(
+          //     value: _isDarkMode,
+          //     onChanged: (value) {
+          //       setState(() {
+          //         _isDarkMode = value;
+          //       });
+          //     },
+          // )
+        ),
+        body: Column(children: [
+          Container(
+            height: 200,
+            width: MediaQuery.of(context).size.width,
+            child: PageView.builder(
+              controller: _pageController1,
+              scrollDirection: Axis.horizontal,
+              itemCount: _titles.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    width: _cardWidth,
+                    child: Card(
+                      color: Colors.black,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Image.network(
+                            _images[index],
+                            width: _cardWidth,
+                            fit: BoxFit.cover,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      _titles[index],
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: Colors.white,
                                       ),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text(
+                                      _subtitles[index],
+                                      style: TextStyle(color: Colors.white),
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-  
-  
-  
-
-  
-            Expanded(
-              child: ListView.builder(
-                itemCount: _moodOptions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    leading: Radio(
-                      groupValue: _selectedIndex,
-                      onChanged: (int? value) {
-                        setState(() {
-                          _selectedIndex = value!;
-                        });
-                      },
-                      value: index,
-                    ),
-                    title: Text(_moodOptions[index]),
-                  );
-                },
-              ),
-            ),
-              Padding(
-              padding: const EdgeInsets.only(bottom: 41.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  fixedSize: Size(200, 50),
-                ),
-                onPressed: () {
-                  _isLoading ? null : _generatePlaylist();
-                },
-                child: _isLoading
-                    ? SpinKitCircle(color: Colors.green)
-                    : Text(
-                        'Generate Playlist',
-                        style: TextStyle(color: Colors.green),
+                        ],
                       ),
-              ),
+                    ),
+                  ),
+                );
+              },
             ),
-  
-  ]),
-   
-   ),
+          ),
+          // Expanded(
+          //   child: ListView.builder(
+          //     itemCount: _moodOptions.length,
+          //     itemBuilder: (BuildContext context, int index) {
+          //       return ListTile(
+          //         leading: Radio(
+          //           groupValue: _selectedIndex,
+          //           onChanged: (int? value) {
+          //             setState(() {
+          //               _selectedIndex = value!;
+          //             });
+          //           },
+          //           value: index,
+          //         ),
+          //         title: Text(_moodOptions[index]),
+          //       );
+          //     },
+          //   ),
+          // ),
+          const Questionary(),
+          // ChoiceCarousel(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 41.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                fixedSize: Size(200, 50),
+              ),
+              onPressed: () {
+                _isLoading ? null : _generatePlaylist();
+              },
+              child: _isLoading
+                  ? SpinKitCircle(color: Colors.green)
+                  : Text(
+                      'Generate Playlist',
+                      style: TextStyle(color: Colors.green),
+                    ),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class Questionary extends StatefulWidget {
-  const Questionary( {super.key});
+  const Questionary({super.key});
 
   @override
   State<Questionary> createState() => _QuestionaryState();
@@ -11,10 +11,9 @@ class Questionary extends StatefulWidget {
 
 class _QuestionaryState extends State<Questionary> {
   int _selectedIndex = 0;
-  List? choiceValue;
+  List choiceValue = [];
   String? values;
-
-  bool isRadioSelected = false;
+  int page = 0;
 
   final List<Map<String, dynamic>> _moodOptions = [
     {
@@ -36,55 +35,68 @@ class _QuestionaryState extends State<Questionary> {
 
   @override
   Widget build(BuildContext context) {
-
     return Expanded(
-      child: Container(
-        child: ListView.builder(
-          itemCount: _moodOptions.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Center(
-              child: ListTile(
-                  leading: 
+      child: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * .4,
+            child: ListView.builder(
+              itemCount: _moodOptions[page]["choices"].length,
+              itemBuilder: (BuildContext context, int index) {
+                choiceValue = _moodOptions[page]["choices"];
+                return ListTile(
+                    leading: Radio(
+                      groupValue: _selectedIndex,
+                      focusColor: Colors.amber,
+                      onChanged: (int? value) {
+                        setState(() {
+                          _selectedIndex = value!;
+                        });
+
+                        // if (_selectedIndex < 4) _selectedIndex++;
+                        // print(choiceValue![_selectedIndex++]);
+                      },
+                      value: index,
+                    ),
+                    // title: Text(values?.toString() ?? ''),
+                    title: Text(choiceValue[index]));
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
                   
+                  onPressed: () {
+                    setState(() {
+                      if (page > 0) {
+                        _selectedIndex = 0;
+                        page--;
+                      }
+                    });
+                  },
+                  icon: const Icon(Icons.navigate_before),
+                ),
+                IconButton(
                   
-                  Column(
-                    children: [
-                    
-                      Radio(
-                        groupValue: _selectedIndex,
-                        focusColor: Colors.amber,
-                        onChanged: (int? value) async {
-                          setState(() {
-                            choiceValue = _moodOptions[index]["choices"];
-                          });
-                          // if (_selectedIndex < 4) _selectedIndex++;
-                          // print(choiceValue![_selectedIndex++]);
-            
-                          // while (!isRadioSelected) {
-                          //   await Future.delayed(Duration(
-                          //       milliseconds:
-                          //           100)); // Wait for 100ms to avoid blocking the UI thread
-                          //   if (_selectedIndex != null) {
-                          //     print('Selected value is: $_selectedIndex');
-                          //     isRadioSelected = true;
-                          //   }
-                          // }
-                          value = index;
-                          _selectedIndex = value;
-                        }, value: index,
-                      ),
-                    ],
-                  ),
-                  // title: Text(values?.toString() ?? ''),
-                  title: Text(choiceValue?[index].toString() ?? "")),
-            );
-                
-        },
-        ),
-      
+                  onPressed: () {
+                    setState(() {
+                      if (page < _moodOptions.length - 1) {
+                        _selectedIndex = 0;
+                        page++;
+                      }
+                    });
+                  },
+                  icon: const Icon(Icons.navigate_next),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
-
-    
   }
 }
