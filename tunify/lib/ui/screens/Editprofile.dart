@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
+import 'package:tunify/ui/screens/setting_screen.dart';
+
 
 class Editprofile extends StatelessWidget {
   @override
@@ -30,7 +32,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => SettingsPage()),
+            );
+          },
         ),
         actions: [
           IconButton(
@@ -108,10 +114,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Dor Alex", false),
-              buildTextField("E-mail", "alexd@gmail.com", false),
+              buildTextField("Full Name", "Abebe Kebede", false),
+              buildTextField("E-mail", "Tunify@gmail.com", false),
               buildTextField("Password", "********", true),
-              buildTextField("Location", "TLV, Israel", false),
               SizedBox(
                 height: 35,
               ),
