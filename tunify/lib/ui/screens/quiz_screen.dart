@@ -399,6 +399,7 @@ final darkTheme = ThemeData(
  home: 
   Scaffold(
     appBar: AppBar(
+
       actions: [
         Switch(
   value: _isDarkMode,

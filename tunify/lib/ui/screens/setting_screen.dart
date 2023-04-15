@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tunify/ui/screens/Editprofile.dart';
+
+import '../components/gNav.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -21,7 +24,10 @@ class _SettingsPageState extends State<SettingsPage> {
             Icons.arrow_back,
             color: Colors.green,
           ),
+
         ),
+
+
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -117,7 +123,10 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
       ),
+        bottomNavigationBar: buildgnav(context)
+
     );
+
   }
 
   Row buildNotificationOptionRow(String title, bool isActive) {
@@ -138,13 +147,17 @@ class _SettingsPageState extends State<SettingsPage> {
               onChanged: (bool val) {},
             ))
       ],
+
     );
   }
 
   GestureDetector buildAccountOptionRow(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/Edit-profile");
+        // Navigator.of(context).pushReplacement(
+        //   MaterialPageRoute(builder: (context) => Editprofile()),
+          Navigator.pushNamed(context, "/Edit-profile"
+        );
 
       },
       child: Padding(
@@ -168,5 +181,6 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
+
   }
 }
