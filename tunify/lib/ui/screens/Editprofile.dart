@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
+import 'package:tunify/ui/screens/home_screen.dart';
 
 
 class Editprofile extends StatelessWidget {

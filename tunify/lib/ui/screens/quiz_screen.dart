@@ -394,32 +394,45 @@ final darkTheme = ThemeData(
     return MaterialApp(
       
         title: 'My App',
-  theme: _isDarkMode ? darkTheme : lightTheme,
+        theme: _isDarkMode ? darkTheme : lightTheme,
   
- home: 
-  Scaffold(
-    appBar: AppBar(
 
-      actions: [
-        Switch(
-  value: _isDarkMode,
-  onChanged: (value) {
-    setState(() {
-      _isDarkMode = value;
-    });
-  },
-)
-      ],
-      
-  //     Switch(
-  //     value: _isDarkMode,
-  //     onChanged: (value) {
-  //       setState(() {
-  //         _isDarkMode = value;
-  //       });
-  //     },
-  // )
+
+        home:
+           // Scaffold(
+           //   appBar: AppBar(
+           //     leading: IconButton(
+           //       icon: Icon(Icons.arrow_back),
+           //      onPressed: () {
+           //        Navigator.of(context).pop();
+           //        },
+           //  actions: [
+           //   Switch(
+           //  value: _isDarkMode,
+           //  onChanged: (value) {
+           //  setState(() {
+           //  _isDarkMode = value;
+        Scaffold(
+        appBar: AppBar(
+        leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+          color: Colors.green,
+    onPressed: () {
+    Navigator.of(context).pop();
+    },
     ),
+    actions: [
+    Switch(
+    value: _isDarkMode,
+    onChanged: (value) {
+    setState(() {
+    _isDarkMode = value;
+    });
+    },
+    ),
+    ],
+    ),
+
     
     body: 
   
@@ -528,6 +541,6 @@ final darkTheme = ThemeData(
   ]),
    
    ),
-    );
+    );;
   }
 }
