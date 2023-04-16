@@ -39,17 +39,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             );
           },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.green,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, "/settings");
-            },
-          ),
-        ],
+
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),

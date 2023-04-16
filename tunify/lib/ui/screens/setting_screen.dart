@@ -18,7 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
         elevation: 1,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.pushNamed(context, "/home");
           },
           icon: Icon(
             Icons.arrow_back,
@@ -150,16 +150,22 @@ class _SettingsPageState extends State<SettingsPage> {
 
     );
   }
-
   GestureDetector buildAccountOptionRow(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {
-        // Navigator.of(context).pushReplacement(
-        //   MaterialPageRoute(builder: (context) => Editprofile()),
-          Navigator.pushNamed(context, "/Edit-profile"
-        );
-
+        Navigator.pushNamed(context, "/Edit-profile");
       },
+
+
+  // GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       // Navigator.of(context).pushReplacement(
+  //       //   MaterialPageRoute(builder: (context) => Editprofile()),
+  //         Navigator.pushNamed(context, "/Edit-profile"
+  //       );
+  //
+  //     },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
