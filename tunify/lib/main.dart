@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
          "/home": (context) => Home_Screen(),
          "/q": (context) => const mode(),
           "/settings": (context) => SettingsPage(),
-          "/Edit-profile": (context) => Editprofile(),
+          "/Edit-profile": (context) => EditProfilePage(),
 
     });
   }
