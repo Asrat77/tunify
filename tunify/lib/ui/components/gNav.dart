@@ -12,12 +12,7 @@ List<Widget> _widgetOptions = <Widget>[
 @override
 @override
 Widget buildgnav(BuildContext context) {
-  return 
-  
-  
-  
-  
-   Stack(
+  return Stack(
     children: [
       CustomPaint(
         size: Size(MediaQuery.of(context).size.width, 80),
@@ -27,13 +22,10 @@ Widget buildgnav(BuildContext context) {
         onTap: (index) {
           if (index == 0) {
             Navigator.pushNamed(context, '/home');
-          }
-          else if(index==1){
-              Navigator.pushNamed(context, '/q');
-             
-          }
-          else{
-             Navigator.pushNamed(context, '/pl');
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/q');
+          } else {
+            Navigator.pushNamed(context, '/settings');
           }
         },
         backgroundColor: Colors.transparent,
@@ -50,7 +42,7 @@ Widget buildgnav(BuildContext context) {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add_circle,
-              size:40 ,
+              size: 40,
             ),
             label: 'create',
           ),
@@ -60,7 +52,6 @@ Widget buildgnav(BuildContext context) {
           ),
         ],
       ),
-      
     ],
   );
 }

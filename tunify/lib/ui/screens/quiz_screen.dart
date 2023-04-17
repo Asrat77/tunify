@@ -389,6 +389,7 @@ class _modeState extends State<mode> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'My App',
       theme: _isDarkMode ? darkTheme : lightTheme,
       home: Scaffold(
@@ -509,6 +510,7 @@ class _modeState extends State<mode> {
                       style: TextStyle(color: Colors.green),
                     ),
             ),
+
           ),
         ]),
       ),
