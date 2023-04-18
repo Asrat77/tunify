@@ -116,9 +116,18 @@ class _LoginScreenState extends State<Login_Screen> {
                       hintText: "Password",
 
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .045,
-                ),
+                validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "Password is required";
+                      } else if (value.length < 6) {
+                        return "Password should be at least 6 characters";
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                       height: MediaQuery.of(context).size.height * .045,
+                  ),
                 Container(
                   width: double.infinity,
                   child: RawMaterialButton(
@@ -134,14 +143,8 @@ class _LoginScreenState extends State<Login_Screen> {
                       style: TextStyle(color: Colors.white, fontSize: 18.0),
 
                     ),
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password is required";
-                      } else if (value.length < 6) {
-                        return "Password should be at least 6 characters";
-                      }
-                      return null;
-                    },
+                  ),
+                    
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * .045,
