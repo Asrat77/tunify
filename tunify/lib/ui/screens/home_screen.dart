@@ -27,13 +27,13 @@ class _Home_ScreenState extends State<Home_Screen> {
       'description description  ',
     'description description  ',
     'description description ',
-    
+
     'description description  ',
   ];
 
   final List<String> _images = [
 
-  
+
 
     'https://assets.capitalfm.com/2013/13/william--willpower-1365154671-custom-0.png',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
@@ -42,7 +42,7 @@ class _Home_ScreenState extends State<Home_Screen> {
 
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-     
+
   ];
 
   final double _cardWidth = 150;
@@ -98,7 +98,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                         padding: const EdgeInsets.all(8.0),
                         child: SizedBox(
                           width: _cardWidth,
-                      
+
                           child: Card(
                             color: Colors.black,
                             child: Row(
@@ -106,7 +106,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Image.network(
-                                 
+
                                   _images[index],
 
                                   width: _cardWidth,
@@ -163,12 +163,12 @@ Row(
 
 
   Expanded(
-            
+
             child: ListView.builder(
-               
+
                 itemCount:_titles.length,
                 scrollDirection: Axis.horizontal,
-                
+
                 itemBuilder: (BuildContext context, index) {
                   return Column(
                     children: [
@@ -176,28 +176,28 @@ Row(
                         height: 180,
                         width: 200,
                         child: Card(
-                          
+
                           color: Colors.white10,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              
+
                               children: [
-                                
+
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width*0.52,
                                   height: MediaQuery.of(context).size.height*0.12,
-                                  
+
                                   child: Image.network(
                                                     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
                                        fit: BoxFit.fitWidth,
-                                         
+
                                                     // _images[index],
                                                   ),
-                                                  
+
                                 ),
 
-                                 
+
 
 
 
@@ -217,71 +217,71 @@ Row(
                                             "subtitles,description",
                                             style: TextStyle(color: Colors.white),
                                           ),
-                                         
+
 
                                    ],
-                                 ), 
-                                       Icon(Icons.add_sharp,color: Colors.green,)    
+                                 ),
+                                       Icon(Icons.add_sharp,color: Colors.green,)
                               ],
                             )),
                       ),
-                      
+
                     ],
-                    
+
                   );
-                  
+
                 }, ),
-                
+
           ),
-  
-     
-                  
+
+
+
 
 Row(
   mainAxisAlignment: MainAxisAlignment.start,
 
   children: [
-    
+
         Text('Your top mixes',style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
   ],
 ),
-                     
 
 
 
-       
-     
+
+
+
          Expanded(
            child: ListView.builder(
              itemCount:2,
              itemBuilder: (BuildContext context, int index) {
              return
               Card(
-             
+
              color: Colors.white12,
                child: Row(
                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  crossAxisAlignment: CrossAxisAlignment.center,
-                 
+
                  children: [
-                   
+
                    SizedBox(
                      width: MediaQuery.of(context).size.width*0.24,
                      height: MediaQuery.of(context).size.height*0.13,
                      child: Image.network(
                                        'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-                          
-                            
+
+
                                        // _images[index],
                                      ),
-                                     
+
                    ),
-         
-                    
-         
-         
-         
-         
+
+
+
+
+
+
                     Column(
                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -297,11 +297,11 @@ Row(
                                "subtitles,description",
                                style: TextStyle(color: Colors.white),
                              ),
-                            
-         
+
+
                       ],
-                    ), 
-                          Icon(Icons.add_sharp,color: Colors.green,)    
+                    ),
+                          Icon(Icons.add_sharp,color: Colors.green,)
                  ],
                ))
               ;
@@ -312,12 +312,12 @@ Row(
           //   width: MediaQuery.of(context).size.width*0.52,
           //    height: MediaQuery.of(context).size.height*0.081,
           //   child: ElevatedButton(onPressed: (){},
-            
+
           //    child:Text('Take a quiz') ,
           //    style:
           //    ElevatedButton.styleFrom(backgroundColor: Colors.green,),
           //         ),
-          // ), 
+          // ),
            ],
       ),
        bottomNavigationBar: buildgnav(context)
