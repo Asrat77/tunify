@@ -1,8 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
 import 'package:tunify/ui/screens/home_screen.dart';
-
+import 'package:image_picker/image_picker.dart';
 
 class Editprofile extends StatelessWidget {
   @override
@@ -21,6 +23,57 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  File _image = File('');
+  Future<void> _getImage() async {
+    final picker = ImagePicker();
+
+    // Show dialog to choose between gallery and camera
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Select Image Source'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                GestureDetector(
+                  child: Text('Gallery'),
+                  onTap: () async {
+                    Navigator.of(context).pop();
+                    final pickedFile = await picker.getImage(
+                      source: ImageSource.gallery,
+                    );
+                    if (pickedFile != null) {
+                      setState(() {
+                        _image = File(pickedFile.path);
+                      });
+                    }
+                  },
+                ),
+                Padding(padding: EdgeInsets.all(8.0)),
+                GestureDetector(
+                  child: Text('Camera'),
+                  onTap: () async {
+                    Navigator.of(context).pop();
+                    final pickedFile = await picker.getImage(
+                      source: ImageSource.camera,
+                    );
+                    if (pickedFile != null) {
+                      setState(() {
+                        _image = File(pickedFile.path);
+                      });
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
   bool showPassword = false;
   @override
   Widget build(BuildContext context) {
@@ -39,7 +92,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
             );
           },
         ),
-
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -59,44 +111,58 @@ class _EditProfilePageState extends State<EditProfilePage> {
               Center(
                 child: Stack(
                   children: [
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor),
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 2,
-                                blurRadius: 10,
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 10))
-                          ],
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
-                              ))),
+                    // Container(
+                    //   width: 130,
+                    //   height: 130,
+                    //   decoration: BoxDecoration(
+                    //       border: Border.all(
+                    //           width: 4,
+                    //           color: Theme.of(context).scaffoldBackgroundColor),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //             spreadRadius: 2,
+                    //             blurRadius: 10,
+                    //             color: Colors.black.withOpacity(0.1),
+                    //             offset: Offset(0, 10))
+                    //       ],
+                    //       shape: BoxShape.circle,
+                    //       image: DecorationImage(
+                    //           fit: BoxFit.cover,
+                    //           image: NetworkImage(
+                    //             "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
+                    //           ))),
+                    // ),
+                    CircleAvatar(
+                      radius: 100,
+                      backgroundColor: Colors.grey,
+                      backgroundImage:
+                      _image != null ? FileImage(_image) : null,
+                      child:
+                      _image == null ? Icon(Icons.person_2_outlined) : null,
                     ),
                     Positioned(
                         bottom: 0,
                         right: 0,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor,
+                        child: InkWell(
+                          onTap: () {
+                            _getImage();
+                          },
+                          child: Container(
+                            child: Icon(
+                              Icons.edit,
+                              color: Colors.white,
                             ),
-                            color: Colors.green,
-                          ),
-                          child: Icon(
-                            Icons.edit,
-                            color: Colors.white,
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 4,
+                                color:
+                                Theme.of(context).scaffoldBackgroundColor,
+                              ),
+                              color: Colors.green,
+                            ),
                           ),
                         )),
                   ],
