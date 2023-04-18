@@ -102,6 +102,7 @@ class _LoginScreenState extends State<Login_Screen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * .045,
                   ),
+
                   TextFormField(
                     obscureText: true,
                     controller: passwordController,
@@ -113,6 +114,25 @@ class _LoginScreenState extends State<Login_Screen> {
                         borderRadius: BorderRadius.circular(25.0),
                       ),
                       hintText: "Password",
+
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .045,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: RawMaterialButton(
+                    fillColor: Color.fromARGB(255, 21, 80, 22),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0)),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
+                    child: const Text(
+                      "Sign in",
+                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {

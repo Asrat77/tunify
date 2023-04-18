@@ -1,40 +1,78 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+late final String title;
 
-Widget buildGnav(BuildContext context) {
-  return Container(
-      color: Color.fromARGB(255, 22, 73, 23),
-      child: GNav(
-        tabs: [
-          GButton(
-            onPressed: () {},
-            icon: Icons.home,
-            text: 'Home',
-            gap: 8,
+int _selectedIndex = 0;
+
+List<Widget> _widgetOptions = <Widget>[
+  Text('Home'),
+  Text('Search'),
+  Text('Profile'),
+];
+@override
+@override
+Widget buildgnav(BuildContext context) {
+  return Stack(
+    children: [
+      CustomPaint(
+        size: Size(MediaQuery.of(context).size.width, 80),
+        painter: BNBCustomPainter(),
+      ),
+      BottomNavigationBar(
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.pushNamed(context, '/home');
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/q');
+          } else {
+            Navigator.pushNamed(context, '/settings');
+          }
+        },
+        backgroundColor: Colors.transparent,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedIndex,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            label: 'Home',
           ),
-          GButton(
-            icon: Icons.search,
-            text: 'Search',
-            gap: 8,
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.add_circle,
+              size: 40,
+            ),
+            label: 'create',
           ),
-          GButton(
-            icon: Icons.playlist_add,
-            text: 'playlist',
-            gap: 8,
-            onPressed: () {
-              Navigator.pushNamed(context, "/pl");
-            },
+          BottomNavigationBarItem(
+            icon: Icon(Icons.playlist_add_circle),
+            label: 'playlist',
           ),
-          GButton(
-            onPressed: () {
-              //  Navigator.pushNamed(context, "/playlist");
-            },
-            icon: Icons.account_circle,
-            text: 'User',
-            gap: 8,
-          )
         ],
-      ));
+      ),
+    ],
+  );
+}
+
+class BNBCustomPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()..color = Color.fromARGB(255, 8, 80, 10);
+    Path path = Path()
+      ..moveTo(0, 20)
+      ..lineTo(0, size.height)
+      ..lineTo(size.width, size.height)
+      ..lineTo(size.width, 20)
+      ..quadraticBezierTo(size.width / 2, -10, 0, 20)
+      ..close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
+
+  @override
+  bool shouldRebuildSemantics(CustomPainter oldDelegate) => false;
 }

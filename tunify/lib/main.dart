@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 import 'package:tunify/services/auth.dart';
 import 'package:tunify/ui/screens/home_screen.dart';
@@ -7,6 +8,14 @@ import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tunify/wrapper.dart';
+
+import 'package:tunify/ui/screens/Editprofile.dart';
+
+
+import 'package:tunify/ui/screens/playlist_screen.dart';
+import 'package:tunify/ui/screens/quiz_screen.dart';
+import 'package:tunify/ui/screens/setting_screen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,28 +47,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<Auth>(
-          create: (_) => Auth(),
-        ),
-      ],
-      child: MaterialApp(
-          home: StreamBuilder<User?>(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return const Playlist();
-              } else {
-                return const Login_Screen();
-              }
-            },
-          ),
-          initialRoute: "/home",
-          routes: {
-            "/home": (context) => const Login_Screen(),
-            "/pl": (context) => const Playlist(),
-          }),
-    );
+
+    return MaterialApp(
+        initialRoute: "/",
+        routes: {
+      "/": (context) =>  Login_Screen(),
+      "/pl": (context) => const Playlist(),
+         "/home": (context) => Home_Screen(),
+         "/q": (context) => const mode(),
+          "/settings": (context) => SettingsPage(),
+          "/Edit-profile": (context) => EditProfilePage(),
+
+    });
   }
 }
