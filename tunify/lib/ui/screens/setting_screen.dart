@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
 
 import '../components/gNav.dart';
+import 'home_screen.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -16,15 +17,17 @@ class _SettingsPageState extends State<SettingsPage> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 1,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/home");
-            },
+          leading:
+          IconButton(
             icon: Icon(
               Icons.arrow_back,
               color: Colors.green,
             ),
-
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => Home_Screen()),
+              );
+            },
           ),
 
 
