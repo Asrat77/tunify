@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/screens/signUpScreen.dart';
 
 import '../../services/auth.dart';
@@ -31,7 +32,7 @@ class _LoginScreenState extends State<Login_Screen> {
 
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.primaryBlack,
       body: Form(
         child: Center(
           key: _formkey,
@@ -46,7 +47,7 @@ class _LoginScreenState extends State<Login_Screen> {
                     child: Text(
                       "Tunify",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: CustomColors.primaryWhite,
                         fontWeight: FontWeight.bold,
                         fontSize: MediaQuery.of(context).size.height * .055,
                       ),
@@ -101,10 +102,10 @@ class _LoginScreenState extends State<Login_Screen> {
                   SizedBox(
                        height: MediaQuery.of(context).size.height * .045,
                   ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   child: RawMaterialButton(
-                    fillColor: Color.fromARGB(255, 21, 80, 22),
+                    fillColor: CustomColors.primaryGreen,
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0)),
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<Login_Screen> {
                     },
                     child: const Text(
                       "Sign in",
-                      style: TextStyle(color: Colors.white, fontSize: 18.0),
+                      style: TextStyle(color: CustomColors.primaryWhite, fontSize: 18.0),
 
                     ),
                   ),
@@ -125,7 +126,7 @@ class _LoginScreenState extends State<Login_Screen> {
                   Container(
                     width: double.infinity,
                     child: RawMaterialButton(
-                      fillColor: Color.fromARGB(255, 21, 80, 22),
+                      fillColor: CustomColors.primaryGreen,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0)),
@@ -139,15 +140,15 @@ class _LoginScreenState extends State<Login_Screen> {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
-      backgroundColor: Colors.green,
-      textColor: Colors.black54,
+      backgroundColor: CustomColors.primaryGreen,
+      textColor: CustomColors.secondaryBlack,
       fontSize: 16);}
                             );
 
                       },
                       child: const Text(
                         "Log in",
-                        style: TextStyle(color: Colors.white, fontSize: 18.0),
+                        style: TextStyle(color: CustomColors.primaryWhite, fontSize: 18.0),
                       ),
                     ),
                   ),

@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/services/auth.dart';
 
@@ -31,7 +32,7 @@ class _signUpscreenState extends State<signUpscreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<Auth>(context);
+    //final auth = Provider.of<Auth>(context);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Form(
@@ -48,7 +49,7 @@ class _signUpscreenState extends State<signUpscreen> {
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: CustomColors.primaryWhite,
                         fontWeight: FontWeight.bold,
                         fontSize: MediaQuery.of(context).size.height * .055,
                       ),
@@ -64,7 +65,7 @@ class _signUpscreenState extends State<signUpscreen> {
                     controller: fullnameController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: CustomColors.primaryWhite,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
@@ -81,7 +82,7 @@ class _signUpscreenState extends State<signUpscreen> {
                     controller: emailController, //email controller
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: CustomColors.primaryWhite,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
@@ -102,7 +103,7 @@ class _signUpscreenState extends State<signUpscreen> {
                     controller: passwordController,
                     decoration: InputDecoration(
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: CustomColors.primaryWhite,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
@@ -120,23 +121,10 @@ class _signUpscreenState extends State<signUpscreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * .055,
                   ),
-                  // TextField(
-                  //     keyboardType: TextInputType.name,
-                  //     decoration: InputDecoration(
-                  //       filled: true,
-                  //       fillColor: Colors.white,
-                  //       enabledBorder: OutlineInputBorder(
-                  //         borderRadius: BorderRadius.circular(25.0),
-                  //       ),
-                  //       hintText: "acc.token",
-                  //     )),
-                  // SizedBox(
-                  // height: MediaQuery.of(context).size.height * .045,
-                  // ),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: RawMaterialButton(
-                      fillColor: Color.fromARGB(255, 21, 80, 22),
+                      fillColor: CustomColors.primaryGreen,
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0)),
@@ -154,8 +142,8 @@ class _signUpscreenState extends State<signUpscreen> {
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
+                              backgroundColor: CustomColors.primaryBlack,
+                              textColor: CustomColors.primaryWhite,
                               fontSize: 16.0);
                         });
                       },
