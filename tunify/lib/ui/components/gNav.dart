@@ -25,7 +25,7 @@ Widget buildgnav(BuildContext context) {
           } else if (index == 1) {
             Navigator.pushNamed(context, '/q');
           } else {
-            Navigator.pushNamed(context, '/pl');
+            Navigator.pushNamed(context, '/play');
           }
         },
         backgroundColor: Colors.transparent,

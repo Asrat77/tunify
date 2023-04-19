@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
 import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
+import 'package:tunify/ui/screens/play.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:tunify/ui/screens/quiz_screen.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
          "/q": (context) => const mode(),
           "/settings": (context) => SettingsPage(),
           "/Edit-profile": (context) => EditProfilePage(),
-
+  "/play": (context) => play(),
+  
     });
   }
 }
