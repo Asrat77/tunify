@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/services/auth.dart';
@@ -140,8 +141,23 @@ class _signUpscreenState extends State<signUpscreen> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0)),
                       onPressed: () {
-                        auth.handleSignUp(
-                            emailController.text, passwordController.text);
+                        FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text)
+                            .then((value) {
+                          Navigator.of(context).pushNamed('/');
+                        }).onError((error, stackTrace) {
+                          print("Error ${error.toString()}");
+                          Fluttertoast.showToast(
+                              msg: error.toString(),
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        });
                       },
                       child: const Text(
                         "Sign Up",

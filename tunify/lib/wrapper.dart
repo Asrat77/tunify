@@ -1,8 +1,7 @@
-import 'package:tunify/data/models/user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
-import 'package:tunify/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'package:tunify/ui/screens/playlist_screen.dart';
 
@@ -11,12 +10,13 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<Auth>(context);
-    return StreamBuilder<User?>(
-      stream: authService.user,
-      builder: (_, AsyncSnapshot<User?> snapshot) {
+    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+    Stream<User?> authStateChanges = _firebaseAuth.authStateChanges();
+    return StreamBuilder(
+      stream: authStateChanges,
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const Playlistpage();
+          return Home_Screen();
         } else {
           return const Login_Screen();
         }

@@ -1,5 +1,8 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:tunify/ui/screens/signUpScreen.dart';
 
@@ -15,36 +18,6 @@ class _LoginScreenState extends State<Login_Screen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
-  // @override
-  // void signInUser() async {
-  //   try {
-  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: emailController.text.trim(),
-  //       password: passwordController.text.trim(),
-  //     );
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == "user-not-found") {
-  //       Fluttertoast.showToast(
-  //           msg: "Incorrect Email",
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM,
-  //           backgroundColor: Colors.red,
-  //           textColor: Colors.white);
-  //       print("object");
-  //     }
-  //     if (e.code == "wrong-password") {
-  //       Fluttertoast.showToast(
-  //         msg: "Incorrect Password.. Try Again!",
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         backgroundColor: Colors.red,
-  //         textColor: Colors.white,
-  //       );
-  //     } else {
-  //       print(emailController.text);
-  //     }
-  //   }
-  // }
 
   @override
   void dispose() {
@@ -55,7 +28,7 @@ class _LoginScreenState extends State<Login_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<Auth>(context);
+
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -157,19 +130,20 @@ class _LoginScreenState extends State<Login_Screen> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0)),
                       onPressed: () async {
-                        print(emailController.text);
-                        print(passwordController.text);
-                       // final isValid = _formkey.currentState!.validate;
-                        await auth
-                            .handleSignInEmail(
-                                emailController.text, passwordController.text)
-                            .then(
-                          (value) {
-                           // print(emailController.text);
-                            Navigator.pushNamed(context, "/pl");
-                            //signInUser();
-                          },
-                        ).catchError((e) => print(e));
+                            FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).
+                        then((value) {
+    Navigator.of(context).popAndPushNamed('/home');
+    }).onError((error, stackTrace) {
+      print("Error ${error.toString()}");
+      Fluttertoast.showToast(msg: error.toString(),
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.green,
+      textColor: Colors.black54,
+      fontSize: 16);}
+                            );
+
                       },
                       child: const Text(
                         "Log in",

@@ -23,24 +23,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-// class AuthWrapper extends StatelessWidget {
-//   const AuthWrapper({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamBuilder<User?>(
-//       stream: FirebaseAuth.instance.authStateChanges(),
-//       builder: (context, snapshot) {
-//         if (snapshot.hasData) {
-//           return const Playlist();
-//         } else {
-//           return const Login_Screen();
-//         }
-//       },
-//     );
-//   }
-// }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -51,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         initialRoute: "/",
         routes: {
-      "/": (context) =>  Login_Screen(),
+      "/": (context) => const Wrapper(),
       "/pl": (context) => const Playlist(),
          "/home": (context) => Home_Screen(),
          "/q": (context) => const mode(),
