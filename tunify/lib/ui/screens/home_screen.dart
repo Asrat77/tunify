@@ -6,13 +6,13 @@ import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/components/gNav.dart';
 
 class Home_Screen extends StatefulWidget {
+  const Home_Screen({super.key});
+
   @override
   _Home_ScreenState createState() => _Home_ScreenState();
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
-  final PageController _pageController2 = PageController();
- final PageController _pageController3 = PageController();
 
   final List<String> _titles = [
     'playlist1',
@@ -56,7 +56,7 @@ class _Home_ScreenState extends State<Home_Screen> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
       if (_currentIndex < _titles.length - 1) {
         _currentIndex++;
       } else {

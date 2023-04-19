@@ -1,13 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:provider/provider.dart';
 import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
-import 'package:tunify/services/auth.dart';
 
 class signUpscreen extends StatefulWidget {
   const signUpscreen({super.key});
@@ -136,7 +131,7 @@ class _signUpscreenState extends State<signUpscreen> {
                             .then((value) {
                           Navigator.of(context).pushNamed('/');
                         }).onError((error, stackTrace) {
-                          print("Error ${error.toString()}");
+                          //print("Error ${error.toString()}");
                           Fluttertoast.showToast(
                               msg: error.toString(),
                               toastLength: Toast.LENGTH_SHORT,
@@ -162,10 +157,10 @@ class _signUpscreenState extends State<signUpscreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Login_Screen()),
+                                builder: (context) => const Login_Screen()),
                           );
                         },
-                        child: Text("Already have an Account?Log In")),
+                        child: const Text("Already have an Account?Log In")),
                   )
                 ],
               ),

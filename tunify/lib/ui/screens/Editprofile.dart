@@ -2,15 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:tunify/constants/custom_colors.dart';
-import 'package:tunify/ui/screens/Editprofile.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
-import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Editprofile extends StatelessWidget {
+  const Editprofile({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Setting UI",
       home: EditProfilePage(),
@@ -19,6 +19,8 @@ class Editprofile extends StatelessWidget {
 }
 
 class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({super.key});
+
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
@@ -27,7 +29,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   File _image = File('');
   Future<void> _getImage() async {
     final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
     setState(() {
       if (pickedFile != null) {
@@ -79,7 +81,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       backgroundImage:
                           _image != null ? FileImage(_image) : null,
                       child:
-                          _image == null ? Icon(Icons.person_2_outlined) : null,
+                          _image == null ? const Icon(Icons.person_2_outlined) : null,
                     ),
                     Positioned(
                         bottom: 0,
@@ -146,7 +148,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       // Add your save button functionality here
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
+                      backgroundColor: Colors.green,
                       padding: const EdgeInsets.symmetric(horizontal: 50),
                       elevation: 2,
                       shape: RoundedRectangleBorder(

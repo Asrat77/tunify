@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-import 'package:tunify/services/auth.dart';
 import 'package:tunify/ui/screens/home_screen.dart';
-import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:tunify/wrapper.dart';
 
 import 'package:tunify/ui/screens/Editprofile.dart';
 
 
-import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:tunify/ui/screens/quiz_screen.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
 
