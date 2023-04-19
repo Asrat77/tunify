@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/components/gNav.dart';
 
 class Home_Screen extends StatefulWidget {
@@ -63,7 +64,7 @@ class _Home_ScreenState extends State<Home_Screen> {
       }
       _pageController1.animateToPage(
         _currentIndex,
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         curve: Curves.easeIn,
       );
     });
@@ -78,7 +79,7 @@ class _Home_ScreenState extends State<Home_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: CustomColors.primaryBlack,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -100,7 +101,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                           width: _cardWidth,
 
                           child: Card(
-                            color: Colors.black,
+                            color: CustomColors.primaryBlack,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,16 +124,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                                         children: <Widget>[
                                           Text(
                                             _titles[index],
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18,
-                                              color: Colors.white,
+                                              color: CustomColors.primaryWhite,
                                             ),
                                           ),
-                                          SizedBox(height: 4),
+                                          const SizedBox(height: 4),
                                           Text(
                                             _subtitles[index],
-                                            style: TextStyle(color: Colors.white),
+                                            style: const TextStyle(color: CustomColors.primaryWhite),
                                           ),
                                         ],
                                       ),
@@ -155,20 +156,17 @@ class _Home_ScreenState extends State<Home_Screen> {
 
 Row(
   mainAxisAlignment: MainAxisAlignment.start,
-  children: [
-        Text('GOOD MORNING',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold ),),
+  children: const [
+        Text('GOOD MORNING',style: TextStyle(color: CustomColors.primaryWhite,fontSize: 30,fontWeight: FontWeight.bold ),),
   ],
 ),
 
 
 
   Expanded(
-
             child: ListView.builder(
-
                 itemCount:_titles.length,
                 scrollDirection: Axis.horizontal,
-
                 itemBuilder: (BuildContext context, index) {
                   return Column(
                     children: [
@@ -204,24 +202,24 @@ Row(
 
                                  Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                   children: [
+                                   children: const [
                                      Text(
                                                "new playlist",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 8,
-                                                  color: Colors.white,
+                                                  color: CustomColors.primaryWhite,
                                                 ),
                                               ),
                                               Text(
                                             "subtitles,description",
-                                            style: TextStyle(color: Colors.white),
+                                            style: TextStyle(color: CustomColors.primaryWhite),
                                           ),
 
 
                                    ],
                                  ),
-                                       Icon(Icons.add_sharp,color: Colors.green,)
+                                       const Icon(Icons.add_sharp,color: CustomColors.primaryGreen,)
                               ],
                             )),
                       ),
@@ -240,9 +238,9 @@ Row(
 Row(
   mainAxisAlignment: MainAxisAlignment.start,
 
-  children: [
+  children: const [
 
-        Text('Your top mixes',style: TextStyle(color: Colors.white,fontSize: 40,fontWeight: FontWeight.bold),),
+        Text('Your top mixes',style: TextStyle(color: CustomColors.primaryGreen,fontSize: 40,fontWeight: FontWeight.bold),),
   ],
 ),
 
@@ -284,13 +282,13 @@ Row(
 
                     Column(
                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Text(
                                   "new playlist",
                                    style: TextStyle(
                                      fontWeight: FontWeight.bold,
                                      fontSize: 8,
-                                     color: Colors.white,
+                                     color: CustomColors.primaryWhite,
                                    ),
                                  ),
                                  Text(
@@ -301,23 +299,14 @@ Row(
 
                       ],
                     ),
-                          Icon(Icons.add_sharp,color: Colors.green,)
+                          const Icon(Icons.add_sharp,color: CustomColors.primaryGreen,)
                  ],
                ))
               ;
             },
            ),
          ),
-          // SizedBox(
-          //   width: MediaQuery.of(context).size.width*0.52,
-          //    height: MediaQuery.of(context).size.height*0.081,
-          //   child: ElevatedButton(onPressed: (){},
 
-          //    child:Text('Take a quiz') ,
-          //    style:
-          //    ElevatedButton.styleFrom(backgroundColor: Colors.green,),
-          //         ),
-          // ),
            ],
       ),
        bottomNavigationBar: buildgnav(context)

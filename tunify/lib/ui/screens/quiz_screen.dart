@@ -270,6 +270,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/components/questionary.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -285,8 +286,6 @@ class mode extends StatefulWidget {
 bool _isDarkMode = false;
 
 class _modeState extends State<mode> {
-  @override
-  int _selectedIndex = -1;
   bool _isLoading = false;
   final List<String> _moodOptions = [
     'Happy',
@@ -306,22 +305,22 @@ class _modeState extends State<mode> {
     for (final track in tracks) {
       songTitles.add(track['track']['name']);
     }
-    final playlistUrl =
+    const playlistUrl =
         'https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO2qz3Ol';
     setState(() {
       _isLoading = false;
     });
     await launch(playlistUrl);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Playlist generated successfully! Enjoy your music!'),
     ));
   }
 
   final lightTheme = ThemeData(
       brightness: Brightness.light,
-      primaryColor: Colors.green,
+      primaryColor: CustomColors.primaryGreen,
       accentColor: Colors.yellow,
-      appBarTheme: AppBarTheme(color: Colors.white));
+      appBarTheme: const AppBarTheme(color: CustomColors.primaryWhite));
 
   final darkTheme = ThemeData(
     brightness: Brightness.dark,
@@ -428,7 +427,7 @@ class _modeState extends State<mode> {
                   child: SizedBox(
                     width: _cardWidth,
                     child: Card(
-                      color: Colors.black,
+                      color: CustomColors.primaryBlack,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -448,16 +447,16 @@ class _modeState extends State<mode> {
                                   children: <Widget>[
                                     Text(
                                       _titles[index],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
-                                        color: Colors.white,
+                                        color: CustomColors.primaryWhite,
                                       ),
                                     ),
-                                    SizedBox(height: 4),
+                                    const SizedBox(height: 4),
                                     Text(
                                       _subtitles[index],
-                                      style: TextStyle(color: Colors.white),
+                                      style: const TextStyle(color: CustomColors.primaryWhite),
                                     ),
                                   ],
                                 ),
@@ -497,17 +496,17 @@ class _modeState extends State<mode> {
             padding: const EdgeInsets.only(bottom: 41.0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                fixedSize: Size(200, 50),
+                backgroundColor: CustomColors.primaryBlack,
+                fixedSize: const Size(200, 50),
               ),
               onPressed: () {
                 _isLoading ? null : _generatePlaylist();
               },
               child: _isLoading
-                  ? SpinKitCircle(color: Colors.green)
-                  : Text(
+                  ? const SpinKitCircle(color: CustomColors.primaryGreen)
+                  : const Text(
                       'Generate Playlist',
-                      style: TextStyle(color: Colors.green),
+                      style: TextStyle(color: CustomColors.primaryGreen),
                     ),
             ),
 

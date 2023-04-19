@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
 import 'package:tunify/ui/screens/home_screen.dart';
@@ -43,9 +44,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: CustomColors.primaryGreen,
           ),
           onPressed: () {
             Navigator.of(context).pushReplacement(
@@ -55,44 +56,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
           },
           child: ListView(
             children: [
-              Text(
+              const Text(
                 "Edit Profile",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Center(
                 child: Stack(
                   children: [
-                    // Container(
-                    //   width: 130,
-                    //   height: 130,
-                    //   decoration: BoxDecoration(
-                    //       border: Border.all(
-                    //           width: 4,
-                    //           color: Theme.of(context).scaffoldBackgroundColor),
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //             spreadRadius: 2,
-                    //             blurRadius: 10,
-                    //             color: Colors.black.withOpacity(0.1),
-                    //             offset: Offset(0, 10))
-                    //       ],
-                    //       shape: BoxShape.circle,
-                    //       image: DecorationImage(
-                    //           fit: BoxFit.cover,
-                    //           image: NetworkImage(
-                    //             "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
-                    //           ))),
-                    // ),
                     CircleAvatar(
                       radius: 100,
                       backgroundColor: Colors.grey,
@@ -109,10 +89,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             _getImage();
                           },
                           child: Container(
-                            child: Icon(
-                              Icons.edit,
-                              color: Colors.white,
-                            ),
                             height: 40,
                             width: 40,
                             decoration: BoxDecoration(
@@ -122,20 +98,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
                               ),
-                              color: Colors.green,
+                              color: CustomColors.primaryGreen,
+                            ),
+                            child: const Icon(
+                              Icons.edit,
+                              color: CustomColors.primaryWhite,
                             ),
                           ),
                         )),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
               buildTextField("Full Name", "Abebe Kebede", false),
               buildTextField("E-mail", "Tunify@gmail.com", false),
               buildTextField("Password", "********", true),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
               Row(
@@ -146,13 +126,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       // Add your cancel button functionality here
                     },
                     style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Colors.black),
+                        side: const BorderSide(color: CustomColors.primaryBlack),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'CANCEL',
                       style: TextStyle(
                         fontSize: 14,
@@ -167,18 +147,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.green,
-                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'SAVE',
                       style: TextStyle(
                         fontSize: 14,
                         letterSpacing: 2.2,
-                        color: Colors.white,
+                        color: CustomColors.primaryWhite,
                       ),
                     ),
                   ),
@@ -205,20 +185,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         showPassword = !showPassword;
                       });
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.remove_red_eye,
                       color: Colors.grey,
                     ),
                   )
                 : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
+            contentPadding: const EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: CustomColors.primaryBlack,
             )),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
 
 import '../components/gNav.dart';
@@ -20,9 +21,9 @@ class _SettingsPageState extends State<SettingsPage> {
           onPressed: () {
             Navigator.pushNamed(context, "/home");
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: CustomColors.primaryGreen,
           ),
 
         ),
@@ -30,21 +31,21 @@ class _SettingsPageState extends State<SettingsPage> {
 
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: ListView(
           children: [
-            Text(
+            const Text(
               "Settings",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(
-              children: [
+              children: const [
                 Icon(
                   Icons.person,
-                  color: Colors.green,
+                  color: CustomColors.primaryGreen,
                 ),
                 SizedBox(
                   width: 8,
@@ -55,25 +56,25 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ],
             ),
-            Divider(
+            const Divider(
               height: 15,
               thickness: 2,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             buildAccountOptionRow(context, "Edit profile"),
 
 
 
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(
-              children: [
+              children: const [
                 Icon(
                   Icons.volume_up_outlined,
-                  color: Colors.green,
+                  color: CustomColors.primaryGreen,
                 ),
                 SizedBox(
                   width: 8,
@@ -84,16 +85,16 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ],
             ),
-            Divider(
+            const Divider(
               height: 15,
               thickness: 2,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             buildNotificationOptionRow("New for you", true),
             buildNotificationOptionRow("Account activity", true),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Center(
@@ -106,11 +107,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   onPrimary: Colors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(color: Colors.black),
+                    side: const BorderSide(color: CustomColors.primaryBlack),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                 ),
-                child: Text(
+                child: const Text(
                   'SIGN OUT',
                   style: TextStyle(
                     fontSize: 16,
@@ -157,15 +158,7 @@ class _SettingsPageState extends State<SettingsPage> {
       },
 
 
-  // GestureDetector buildAccountOptionRow(BuildContext context, String title) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       // Navigator.of(context).pushReplacement(
-  //       //   MaterialPageRoute(builder: (context) => Editprofile()),
-  //         Navigator.pushNamed(context, "/Edit-profile"
-  //       );
-  //
-  //     },
+
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
@@ -179,7 +172,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 color: Colors.grey[600],
               ),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               color: Colors.grey,
             ),
