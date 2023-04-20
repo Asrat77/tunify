@@ -136,6 +136,13 @@ class _modeState extends State<mode> {
       theme: _isDarkMode ? darkTheme : lightTheme,
       home: Scaffold(
         appBar: AppBar(
+        leading: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.green,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+          },
+        ),
           actions: [
             Switch(
               value: _isDarkMode,
@@ -145,15 +152,9 @@ class _modeState extends State<mode> {
                 });
               },
             )
+
           ],
 
-          //     Switch(
-          //     value: _isDarkMode,
-          //     onChanged: (value) {
-          //       setState(() {
-          //         _isDarkMode = value;
-          //       });
-          //     },
           // )
         ),
         body: Column(children: [

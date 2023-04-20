@@ -25,15 +25,65 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   File _image = File('');
   Future<void> _getImage() async {
-    final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+    final picker = ImagePicker();
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      }
-    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Select Image Source'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                GestureDetector(
+                  child: Text('Gallery'),
+                  onTap: () async {
+                    Navigator.of(context).pop();
+                    final pickedFile = await picker.getImage(
+                      source: ImageSource.gallery,
+                    );
+                    if (pickedFile != null) {
+                      setState(() {
+                        _image = File(pickedFile.path);
+                      });
+                    }
+                  },
+                ),
+                Padding(padding: EdgeInsets.all(8.0)),
+                GestureDetector(
+                  child: Text('Camera'),
+                  onTap: () async {
+                    Navigator.of(context).pop();
+                    final pickedFile = await picker.getImage(
+                      source: ImageSource.camera,
+                    );
+                    if (pickedFile != null) {
+                      setState(() {
+                        _image = File(pickedFile.path);
+                      });
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
+
+  // Future<void> _getImage() async {
+  //   final pickedFile =
+  //       await ImagePicker().getImage(source: ImageSource.camera);
+  //       await ImagePicker().getImage(source: ImageSource.gallery);
+  //
+  //
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       _image = File(pickedFile.path);
+  //     }
+  //   });
+  // }
 
   bool showPassword = false;
   @override
