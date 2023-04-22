@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:tunify/ui/components/appbar.dart';
 import 'package:tunify/ui/components/questionary.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +22,7 @@ class mode extends StatefulWidget {
   State<mode> createState() => _modeState();
 }
 
-bool _isDarkMode = false;
+bool _islightmode = false;
 
 class _modeState extends State<mode> {
   @override
@@ -56,21 +57,7 @@ class _modeState extends State<mode> {
     ));
   }
 
-  final lightTheme = ThemeData(
-      brightness: Brightness.light,
-      primaryColor: Colors.green,
-      accentColor: Colors.yellow,
-      appBarTheme: AppBarTheme(color: Colors.white));
-
-  final darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: Colors.blueGrey[900],
-    accentColor: Colors.yellowAccent,
-    appBarTheme: AppBarTheme(color: Colors.black)
-    
-
-  );
-
+ 
   final PageController _pageController2 = PageController();
   final PageController _pageController3 = PageController();
 
@@ -133,30 +120,32 @@ class _modeState extends State<mode> {
     return MaterialApp(
 
       title: 'My App',
-      theme: _isDarkMode ? darkTheme : lightTheme,
+    
       home: Scaffold(
         appBar: AppBar(
-        leading: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    color: Colors.green,
-                    onPressed: () {
-                      Navigator.of(context).pop();
+      actions: [
+        Switch(
+          value: _islightmode,
+          onChanged: (value) {
+            setState(() {
+               _islightmode = value;
+            });
+           
           },
         ),
-          actions: [
-            Switch(
-              value: _isDarkMode,
-              onChanged: (value) {
-                setState(() {
-                  _isDarkMode = value;
-                });
-              },
-            )
-
-          ],
-
-          // )
-        ),
+        Container(
+          child: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+            icon: const Icon(
+              Icons.account_circle_outlined,
+              size: 33,
+            ),
+          ),
+        )
+        ],
+       ),
         body: Column(children: [
           Container(
             height: 200,

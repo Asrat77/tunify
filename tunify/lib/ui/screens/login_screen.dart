@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:tunify/ui/screens/signUpScreen.dart';
 
 class Login_Screen extends StatelessWidget {
@@ -38,7 +39,7 @@ class Login_Screen extends StatelessWidget {
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                     ),
-                    hintText: "user name",
+                    hintText: "user",
                   ),
                 ),
                 SizedBox(
@@ -52,7 +53,7 @@ class Login_Screen extends StatelessWidget {
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                     ),
-                    hintText: "Password",
+                    hintText: Locales.string(context, "home"),
                   ),
                 ),
                 SizedBox(
@@ -68,8 +69,8 @@ class Login_Screen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, "/home");
                     },
-                    child: const Text(
-                      "Sign in",
+                    child: LocaleText(
+                      "sign_in",
                       style: TextStyle(color: Colors.white, fontSize: 18.0),
                     ),
                   ),
@@ -86,7 +87,7 @@ class Login_Screen extends StatelessWidget {
                               builder: (context) => signUpscreen()),
                         );
                       },
-                      child: Text("no account yet ?")),
+                      child: LocaleText("no_acc")),
                 )
               ],
             ),

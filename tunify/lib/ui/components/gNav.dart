@@ -1,17 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
+import 'package:tunify/ui/components/appbar.dart';
+
+class gnav extends StatefulWidget {
+  const gnav({super.key});
+
+  @override
+  State<gnav> createState() => _gnavState();
+}
+
+class _gnavState extends State<gnav> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
 
 late final String title;
 
 int _selectedIndex = 0;
 
-List<Widget> _widgetOptions = <Widget>[
-  Text('Home'),
-  Text('Search'),
-  Text('Profile'),
-];
+
 @override
 @override
 Widget buildgnav(BuildContext context) {
+  var home = LocaleText("home").data;
+
+
   return Stack(
     children: [
       CustomPaint(
@@ -32,12 +47,12 @@ Widget buildgnav(BuildContext context) {
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,
-        items: const <BottomNavigationBarItem>[
+        items: [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
             ),
-            label: 'Home',
+            label: Locales.string(context, "home"),
           ),
           BottomNavigationBarItem(
             icon: Icon(

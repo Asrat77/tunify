@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tunify/ui/components/gNav.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
@@ -34,8 +35,8 @@ class _PlaylistState extends State<Playlist> {
             children: <Widget>[
               Container(
                 margin: const EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 8.0),
-                child: const Text(
-                  'My Playlist',
+                child: LocaleText(
+                  'myplaylist',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24.0,
@@ -59,11 +60,11 @@ class _PlaylistState extends State<Playlist> {
                             color: Colors.black,
                           ),
                         ),
-                        title: Text(
-                          'Title',
+                        title: LocaleText(
+                          'title',
                           style: TextStyle(color: Colors.white24),
                         ),
-                        subtitle: Text('Artist ',
+                        subtitle: LocaleText('artist',
                             style: TextStyle(color: Colors.white)),
                         trailing: Icon(
                           Icons.more_vert,

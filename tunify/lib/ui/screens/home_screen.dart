@@ -1,53 +1,40 @@
 import 'dart:async';
-
+import 'package:flutter_locales/flutter_locales.dart';
+import 'package:tunify/ui/components/appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:tunify/ui/components/appbar.dart';
 import 'package:tunify/ui/components/gNav.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
+import '../components/appbar.dart';
 
 class Home_Screen extends StatefulWidget {
   @override
   _Home_ScreenState createState() => _Home_ScreenState();
 }
 
-bool _isDarkMode = false;
-
 class _Home_ScreenState extends State<Home_Screen> {
-  final lightTheme = ThemeData(
-      brightness: Brightness.light,
-      primaryColor: Colors.green,
-      accentColor: Colors.yellow,
-      appBarTheme: AppBarTheme(color: Colors.white));
-
-  final darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: Colors.blueGrey[900],
-    accentColor: Colors.yellowAccent,
-    appBarTheme: AppBarTheme(color: Colors.black)
-    
-  );
-
   final PageController _pageController2 = PageController();
   final PageController _pageController3 = PageController();
 
   final List<String> _titles = [
-    'playlist1',
-    'playlist2',
-    'playlist 3',
-    'playlist 4',
-    'playlist 5',
+    "playlist",
+    'playlist',
+    'playlist',
+    'playlist',
+    'playlist',
   ];
 
   final List<String> _subtitles = [
-    'description description  ',
-    'description description  ',
-    'description description  ',
-    'description description  ',
-    'description description ',
-    'description description  ',
+    "description",
+    'description',
+    'description',
+    'description',
+    'description',
+    'description',
   ];
 
   final List<String> _images = [
-    'https://assets.capitalfm.com/2013/13/william--willpower-1365154671-custom-0.png',
+    'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/jazz-international-day-flyer-design-template-bebbb880b30a77a152ac7298c3bad032_screen.jpg?ts=1637033556',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
     'https://www.stretta-music.com/media/images/952/658952_detail-00.jpg',
     'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
@@ -86,36 +73,10 @@ class _Home_ScreenState extends State<Home_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: _isDarkMode ? darkTheme : lightTheme,
-        home: Scaffold(
-          
-            appBar: AppBar(
-              actions: [
-                Switch(
-                  value: _isDarkMode,
-                  onChanged: (value) {
-                    setState(() {
-                      _isDarkMode = value;
-                    });
-                  },
-                )
-              ],
-             
-              elevation: 1,
-              leading: IconButton(
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.green,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => SettingsPage()),
-                  );
-                },
-              ),
-            ),
-            backgroundColor: Colors.black,
+
+    return  Scaffold(
+       floatingActionButton:  Icon(Icons.add_circle,size: 50,shadows: [BoxShadow(blurRadius: 2.0,color: Colors.green),]), 
+            backgroundColor: Color.fromARGB(255, 16, 20, 24),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -136,13 +97,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                               child: SizedBox(
                                 width: _cardWidth,
                                 child: Card(
-                                  color: Colors.black,
+                                  
+                                  color: Color.fromARGB(255, 29, 27, 27),
                                   child: Row(
+
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
+                                      
                                       Image.network(
                                         _images[index],
                                         width: _cardWidth,
@@ -158,16 +122,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                Text(
+                                                LocaleText(
                                                   _titles[index],
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 18,
+                                                    fontSize: 8,
                                                     color: Colors.white,
                                                   ),
                                                 ),
                                                 SizedBox(height: 4),
-                                                Text(
+                                                LocaleText(
                                                   _subtitles[index],
                                                   style: TextStyle(
                                                       color: Colors.white),
@@ -192,11 +156,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      'GOOD MORNING',
+                    LocaleText(
+                      'popular',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -210,8 +174,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                       return Column(
                         children: [
                           SizedBox(
-                            height: 180,
-                            width: 200,
+                            height: 150,
+                            width: 150,
                             child: Card(
                                 color: Colors.white10,
                                 child: Column(
@@ -226,7 +190,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                           MediaQuery.of(context).size.height *
                                               0.12,
                                       child: Image.network(
-                                        'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
+                                      _images[index],
                                         fit: BoxFit.fitWidth,
 
                                         // _images[index],
@@ -236,16 +200,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          "new playlist",
+                                        LocaleText(
+                                          "newplaylist",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 8,
                                             color: Colors.white,
                                           ),
                                         ),
-                                        Text(
-                                          "subtitles,description",
+                                        LocaleText(
+                                          "description",
                                           style: TextStyle(color: Colors.white),
                                         ),
                                       ],
@@ -256,21 +220,27 @@ class _Home_ScreenState extends State<Home_Screen> {
                                     )
                                   ],
                                 )),
+                                
                           ),
+                           
                         ],
+                       
                       );
                     },
+                    
                   ),
+                  
                 ),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+   
                   children: [
-                    Text(
-                      'Your top mixes',
+                    LocaleText(
+                      'Yourtopmixes',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 40,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -278,7 +248,7 @@ class _Home_ScreenState extends State<Home_Screen> {
 
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 2,
+                    itemCount:_images.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
                           color: Colors.white12,
@@ -299,16 +269,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "new playlist",
+                                  LocaleText(
+                                    "newplaylist",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 8,
                                       color: Colors.white,
                                     ),
                                   ),
-                                  Text(
-                                    "subtitles,description",
+                                  LocaleText(
+                                    "description",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
@@ -322,18 +292,9 @@ class _Home_ScreenState extends State<Home_Screen> {
                     },
                   ),
                 ),
-                // SizedBox(
-                //   width: MediaQuery.of(context).size.width*0.52,
-                //    height: MediaQuery.of(context).size.height*0.081,
-                //   child: ElevatedButton(onPressed: (){},
-
-                //    child:Text('Take a quiz') ,
-                //    style:
-                //    ElevatedButton.styleFrom(backgroundColor: Colors.green,),
-                //         ),
-                // ),
+                
               ],
             ),
-            bottomNavigationBar: buildgnav(context)));
+            bottomNavigationBar: buildgnav(context));
   }
 }
