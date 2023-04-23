@@ -102,27 +102,9 @@ class _LoginScreenState extends State<Login_Screen> {
                   SizedBox(
                        height: MediaQuery.of(context).size.height * .045,
                   ),
-                SizedBox(
-                  width: double.infinity,
-                  child: RawMaterialButton(
-                    fillColor: CustomColors.primaryGreen,
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0)),
-                    onPressed: () {
-                      Navigator.pushNamed(context, "/home");
-                    },
-                    child: const Text(
-                      "Sign in",
-                      style: TextStyle(color: CustomColors.primaryWhite, fontSize: 18.0),
-
-                    ),
-                  ),
-                    
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * .045,
-                  ),
+              
+                  
+                 
                   Container(
                     width: double.infinity,
                     child: RawMaterialButton(
