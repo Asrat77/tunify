@@ -46,4 +46,23 @@ class Auth {
   Future<void> logout() async {
     return await _firebaseAuth.signOut();
   }
+ 
+
+// ...
+
+
+void signOut() async {
+  await _firebaseAuth.signOut();
+  _notifyListeners();
+}
+
+void _notifyListeners() {
+  _firebaseAuth.authStateChanges().listen((User? user) {
+    if (user == null) {
+      // User is signed out, notify listeners
+      // Do any necessary app-specific logic here
+    }
+  } as void Function(auth.User? event)?);
+}
+
 }

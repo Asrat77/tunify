@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tunify/constants/custom_colors.dart';
+
 import 'package:tunify/ui/screens/Editprofile.dart';
 
 import '../components/gNav.dart';
@@ -10,127 +11,150 @@ class SettingsPage extends StatefulWidget {
   _SettingsPageState createState() => _SettingsPageState();
 }
 
+final user = FirebaseAuth.instance.currentUser!;
+
+ final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _signOut(BuildContext context) async {
+    await _auth.signOut();
+    Navigator.pushReplacementNamed(context, '/signin');
+  }
+final lightTheme = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: Colors.green,
+    accentColor: Colors.yellow,
+    appBarTheme: AppBarTheme(color: Colors.white));
+
+final darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: Colors.blueGrey[900],
+    accentColor: Colors.yellowAccent,
+    appBarTheme: AppBarTheme(color: Colors.black));
+bool _islightmode = false;
+
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 1,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/home");
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: CustomColors.primaryGreen,
-          ),
-
-        ),
-
-
-      ),
-      body: Container(
-        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
-        child: ListView(
-          children: [
-            const Text(
-              "Settings",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Row(
-              children: const [
-                Icon(
-                  Icons.person,
-                  color: CustomColors.primaryGreen,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Account",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            buildAccountOptionRow(context, "Edit profile"),
-
-
-
-            const SizedBox(
-              height: 40,
-            ),
-            Row(
-              children: const [
-                Icon(
-                  Icons.volume_up_outlined,
-                  color: CustomColors.primaryGreen,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Notifications",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            const Divider(
-              height: 15,
-              thickness: 2,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            buildNotificationOptionRow("New for you", true),
-            buildNotificationOptionRow("Account activity", true),
-            const SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: ElevatedButton(
+    return MaterialApp(
+        theme: _islightmode ? lightTheme : darkTheme,
+        home: Scaffold(
+            appBar: AppBar(
+              elevation: 1,
+              leading: IconButton(
                 onPressed: () {
-                  // Add your sign out or navigation functionality here
+                  Navigator.pushNamed(context, "/home");
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  onPrimary: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: CustomColors.primaryBlack),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                ),
-                child: const Text(
-                  'SIGN OUT',
-                  style: TextStyle(
-                    fontSize: 16,
-                    letterSpacing: 2.2,
-                    fontWeight: FontWeight.bold,
-                  ),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.green,
                 ),
               ),
-            )
-          ],
-        ),
-      ),
-        bottomNavigationBar: buildgnav(context)
-
-    );
-
+            ),
+            body: Container(
+              padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+              child: ListView(
+                children: [
+                  Text(
+                    "setting",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: Colors.green,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "account",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 15,
+                    thickness: 2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildAccountOptionRow(context, "Edit profile"),
+                  Divider(
+                    height: 15,
+                    thickness: 2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildlanguageOptionRow(context, "Language"),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.volume_up_outlined,
+                        color: Colors.green,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        "Notifications",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 15,
+                    thickness: 2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildNotificationOptionRow("mode"),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _signOut(context);
+                        // Add your sign out or navigation functionality here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        onPrimary: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Colors.black),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                      ),
+                      child: Text(
+                        'SIGN OUT',
+                        style: TextStyle(
+                          fontSize: 16,
+                          letterSpacing: 2.2,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            bottomNavigationBar: buildgnav(context)));
   }
 
-  Row buildNotificationOptionRow(String title, bool isActive) {
+  Row buildNotificationOptionRow(String title) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -144,21 +168,22 @@ class _SettingsPageState extends State<SettingsPage> {
         Transform.scale(
             scale: 0.7,
             child: CupertinoSwitch(
-              value: isActive,
-              onChanged: (bool val) {},
+              value: _islightmode,
+              onChanged: (value) {
+                setState(() {
+                  _islightmode = value;
+                });
+              },
             ))
       ],
-
     );
   }
+
   GestureDetector buildAccountOptionRow(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, "/Edit-profile");
       },
-
-
-
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
@@ -172,7 +197,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 color: Colors.grey[600],
               ),
             ),
-            const Icon(
+            Icon(
               Icons.arrow_forward_ios,
               color: Colors.grey,
             ),
@@ -180,6 +205,33 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
+  }
 
+  GestureDetector buildlanguageOptionRow(BuildContext context, String title) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, "/ls");
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[600],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

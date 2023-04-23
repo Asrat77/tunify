@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:tunify/constants/custom_colors.dart';
+import 'package:tunify/ui/components/appbar.dart';
 import 'package:tunify/ui/components/gNav.dart';
 
 class Home_Screen extends StatefulWidget {
@@ -79,7 +80,8 @@ class _Home_ScreenState extends State<Home_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.primaryBlack,
+      appBar: MyAppbar(),
+      backgroundColor: Color.fromARGB(255, 11, 12, 12),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -101,7 +103,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                           width: _cardWidth,
 
                           child: Card(
-                            color: CustomColors.primaryBlack,
+                            color: Colors.white10,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +173,7 @@ Row(
                   return Column(
                     children: [
                       SizedBox(
-                        height: 180,
+                        height: MediaQuery.of(context).size.height*0.2,
                         width: 200,
                         child: Card(
 
