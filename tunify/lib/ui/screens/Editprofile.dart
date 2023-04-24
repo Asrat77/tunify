@@ -1,16 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:tunify/constants/custom_colors.dart';
+import 'package:tunify/ui/screens/Editprofile.dart';
 import 'package:tunify/ui/screens/setting_screen.dart';
+import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Editprofile extends StatelessWidget {
-  const Editprofile({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Setting UI",
       home: EditProfilePage(),
@@ -19,8 +18,6 @@ class Editprofile extends StatelessWidget {
 }
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
-
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
@@ -28,15 +25,65 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   File _image = File('');
   Future<void> _getImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final picker = ImagePicker();
 
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      }
-    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Select Image Source'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                GestureDetector(
+                  child: Text('Gallery'),
+                  onTap: () async {
+                    Navigator.of(context).pop();
+                    final pickedFile = await picker.getImage(
+                      source: ImageSource.gallery,
+                    );
+                    if (pickedFile != null) {
+                      setState(() {
+                        _image = File(pickedFile.path);
+                      });
+                    }
+                  },
+                ),
+                Padding(padding: EdgeInsets.all(8.0)),
+                GestureDetector(
+                  child: Text('Camera'),
+                  onTap: () async {
+                    Navigator.of(context).pop();
+                    final pickedFile = await picker.getImage(
+                      source: ImageSource.camera,
+                    );
+                    if (pickedFile != null) {
+                      setState(() {
+                        _image = File(pickedFile.path);
+                      });
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
+
+  // Future<void> _getImage() async {
+  //   final pickedFile =
+  //       await ImagePicker().getImage(source: ImageSource.camera);
+  //       await ImagePicker().getImage(source: ImageSource.gallery);
+  //
+  //
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //       _image = File(pickedFile.path);
+  //     }
+  //   });
+  // }
 
   bool showPassword = false;
   @override
@@ -46,9 +93,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back,
-            color: CustomColors.primaryGreen,
+            color: Colors.green,
           ),
           onPressed: () {
             Navigator.of(context).pushReplacement(
@@ -58,30 +105,51 @@ class _EditProfilePageState extends State<EditProfilePage> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
           },
           child: ListView(
             children: [
-              const Text(
+              Text(
                 "Edit Profile",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 15,
               ),
               Center(
                 child: Stack(
                   children: [
+                    // Container(
+                    //   width: 130,
+                    //   height: 130,
+                    //   decoration: BoxDecoration(
+                    //       border: Border.all(
+                    //           width: 4,
+                    //           color: Theme.of(context).scaffoldBackgroundColor),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //             spreadRadius: 2,
+                    //             blurRadius: 10,
+                    //             color: Colors.black.withOpacity(0.1),
+                    //             offset: Offset(0, 10))
+                    //       ],
+                    //       shape: BoxShape.circle,
+                    //       image: DecorationImage(
+                    //           fit: BoxFit.cover,
+                    //           image: NetworkImage(
+                    //             "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
+                    //           ))),
+                    // ),
                     CircleAvatar(
                       radius: 100,
                       backgroundColor: Colors.grey,
                       backgroundImage:
                           _image != null ? FileImage(_image) : null,
                       child:
-                          _image == null ? const Icon(Icons.person_2_outlined) : null,
+                          _image == null ? Icon(Icons.person_2_outlined) : null,
                     ),
                     Positioned(
                         bottom: 0,
@@ -91,6 +159,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             _getImage();
                           },
                           child: Container(
+                            child: Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            ),
                             height: 40,
                             width: 40,
                             decoration: BoxDecoration(
@@ -100,24 +172,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,
                               ),
-                              color: CustomColors.primaryGreen,
-                            ),
-                            child: const Icon(
-                              Icons.edit,
-                              color: CustomColors.primaryWhite,
+                              color: Colors.green,
                             ),
                           ),
                         )),
                   ],
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 35,
               ),
               buildTextField("Full Name", "Abebe Kebede", false),
               buildTextField("E-mail", "Tunify@gmail.com", false),
               buildTextField("Password", "********", true),
-              const SizedBox(
+              SizedBox(
                 height: 35,
               ),
               Row(
@@ -128,13 +196,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       // Add your cancel button functionality here
                     },
                     style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      padding: EdgeInsets.symmetric(horizontal: 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: const BorderSide(color: CustomColors.primaryBlack),
+                        side: BorderSide(color: Colors.black),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'CANCEL',
                       style: TextStyle(
                         fontSize: 14,
@@ -148,19 +216,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       // Add your save button functionality here
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
+                      primary: Colors.green,
+                      padding: EdgeInsets.symmetric(horizontal: 50),
                       elevation: 2,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Text(
+                    child: Text(
                       'SAVE',
                       style: TextStyle(
                         fontSize: 14,
                         letterSpacing: 2.2,
-                        color: CustomColors.primaryWhite,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -187,20 +255,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         showPassword = !showPassword;
                       });
                     },
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.remove_red_eye,
                       color: Colors.grey,
                     ),
                   )
                 : null,
-            contentPadding: const EdgeInsets.only(bottom: 3),
+            contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             hintText: placeholder,
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: CustomColors.primaryBlack,
+              color: Colors.black,
             )),
       ),
     );

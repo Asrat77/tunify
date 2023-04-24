@@ -1,28 +1,48 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-// class mm extends AppBar {
-//   mm({
-//     Key? key,
-//     required List<Widget>? actions,
-//   }) : super(key: key, actions: actions);
+class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
 
-//   bool _isDarkMode = false;
-//   final lightTheme = ThemeData(
+
+//  final lightTheme = ThemeData(
 //       brightness: Brightness.light,
 //       primaryColor: Colors.green,
 //       accentColor: Colors.yellow,
-//       cardColor: Colors.black,
-//       appBarTheme: AppBarTheme(backgroundColor: Colors.deepPurple));
-//   final darkTheme = ThemeData(
-//     brightness: Brightness.dark,
-//     primaryColor: Colors.blueGrey[900],
-//     accentColor: Colors.yellowAccent,
-//   );
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'g',
-//       actions: ;
-//     );
-//   }
-// }
+//       appBarTheme: AppBarTheme(color: Colors.white));
+
+  // // final darkTheme = ThemeData(
+  // //   brightness: Brightness.dark,
+  // //   primaryColor: Colors.blueGrey[900],
+  // //   accentColor: Colors.yellowAccent,
+  // //   appBarTheme: AppBarTheme(color: Colors.black)
+    
+
+  // );
+
+
+ 
+
+  @override
+  Widget build(BuildContext context) {
+  
+    return 
+    AppBar(
+      backgroundColor:Colors.black,
+      actions: [
+      
+        IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/settings');
+          },
+          icon: const Icon(
+            Icons.account_circle_outlined,
+            size: 33,
+          ),
+        )
+      ],
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
