@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tunify/services/auth.dart';
 
 import 'package:tunify/ui/screens/Editprofile.dart';
 
@@ -13,12 +14,13 @@ class SettingsPage extends StatefulWidget {
 
 final user = FirebaseAuth.instance.currentUser!;
 
- final FirebaseAuth _auth = FirebaseAuth.instance;
+ Auth auth = Auth();
 
   void _signOut(BuildContext context) async {
-    await _auth.signOut();
-    Navigator.pushReplacementNamed(context, '/signin');
-  }
+    FirebaseAuth.instance.signOut().
+    then((value) {
+      Navigator.of(context).popAndPushNamed('/login');
+    });}
 final lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: Colors.green,

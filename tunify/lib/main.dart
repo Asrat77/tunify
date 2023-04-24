@@ -3,6 +3,7 @@ import 'package:flutter_locales/flutter_locales.dart';
 
 import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:tunify/ui/screens/language.dart';
+import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/ui/screens/play.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -51,6 +52,8 @@ class MyApp extends StatelessWidget {
           "/Edit-profile": (context) => EditProfilePage(),
            "/play": (context) => const play(),
            "/ls":(context) =>const languageScreen(),
+          "/login":(context) =>const Login_Screen(),
+
 
     }));
   }
