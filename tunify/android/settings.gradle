@@ -1,4 +1,6 @@
+include ':spotify_sdk', ':spotify-app-remote'
 include ':app'
+
 
 def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
 def properties = new Properties()

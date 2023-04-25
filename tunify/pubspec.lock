@@ -158,6 +158,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dotenv:
+    dependency: "direct main"
+    description:
+      name: flutter_dotenv
+      sha256: d9283d92059a22e9834bc0a31336658ffba77089fb6f3cc36751f1fc7c6661a3
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.2"
+  flutter_hooks:
+    dependency: transitive
+    description:
+      name: flutter_hooks
+      sha256: "2b969bb449330a547150827dfe0376f1c2374035ed7c6eb879b385def4d5e614"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.16.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -174,6 +190,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.9"
+  flutter_riverpod:
+    dependency: transitive
+    description:
+      name: flutter_riverpod
+      sha256: "2885685ad4ff8c62e84b6295cc13c24c733164006edd2b4ac1204beec0e35e54"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.0+3"
+  flutter_sdk:
+    dependency: "direct main"
+    description:
+      name: flutter_sdk
+      sha256: "4b3d296d8b095615b30787b21e0bb51398ecbfb6dd0186ccd96657cb6062f765"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -200,6 +232,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.2.1"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: "70776c4541e5cacfe45bcaf00fe79137b8c61aa34fb5765a05ce6c57fd72c6e9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.3"
   google_nav_bar:
     dependency: "direct main"
     description:
@@ -208,6 +248,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.6"
+  hooks_riverpod:
+    dependency: transitive
+    description:
+      name: hooks_riverpod
+      sha256: "1a538a03566ba07266d2bf9966c2b0397d5aeb1ed29f2b02cb1e541fe71fc483"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.0+3"
   http:
     dependency: "direct main"
     description:
@@ -296,6 +344,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  logger:
+    dependency: "direct main"
+    description:
+      name: logger
+      sha256: db2ff852ed77090ba9f62d3611e4208a3d11dfa35991a81ae724c113fcb3e3f7
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.0"
   matcher:
     dependency: transitive
     description:
@@ -329,7 +385,7 @@ packages:
     source: hosted
     version: "1.0.0"
   oauth2:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: oauth2
       sha256: "1e8376c222651904caf7785fd2fa01b1e2be608c94bec842a94e116deca88f13"
@@ -369,7 +425,7 @@ packages:
     source: hosted
     version: "2.1.5"
   pedantic:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: pedantic
       sha256: "67fc27ed9639506c856c840ccce7594d0bdcd91bc8d53d6e52359449a1d50602"
@@ -408,6 +464,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  query_params:
+    dependency: "direct main"
+    description:
+      name: query_params
+      sha256: "13f74343014d4564b1034728d1a42c0f017ecea32fd073a667e9c8dd7338d737"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.1"
+  riverpod:
+    dependency: transitive
+    description:
+      name: riverpod
+      sha256: "13cbe0e17b659f38027986df967b3eaf7f42c519786352167fc3db1be44eae07"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.0+3"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -477,14 +549,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  spotify:
-    dependency: "direct main"
-    description:
-      name: spotify
-      sha256: c7c3f157f052143f713477bd5a764b080a0023ed084428bd0cf5a9e3bc260cc6
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.11.0"
   stack_trace:
     dependency: transitive
     description:
@@ -493,6 +557,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  state_notifier:
+    dependency: transitive
+    description:
+      name: state_notifier
+      sha256: "8fe42610f179b843b12371e40db58c9444f8757f8b69d181c97e50787caed289"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.2+1"
   stream_channel:
     dependency: transitive
     description:
@@ -533,6 +605,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  uni_links:
+    dependency: "direct main"
+    description:
+      name: uni_links
+      sha256: "051098acfc9e26a9fde03b487bef5d3d228ca8f67693480c6f33fd4fbb8e2b6e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
+  uni_links_platform_interface:
+    dependency: transitive
+    description:
+      name: uni_links_platform_interface
+      sha256: "929cf1a71b59e3b7c2d8a2605a9cf7e0b125b13bc858e55083d88c62722d4507"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  uni_links_web:
+    dependency: transitive
+    description:
+      name: uni_links_web
+      sha256: "7539db908e25f67de2438e33cc1020b30ab94e66720b5677ba6763b25f6394df"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   url_launcher:
     dependency: "direct main"
     description:

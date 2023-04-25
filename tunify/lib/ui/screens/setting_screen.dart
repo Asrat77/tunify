@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tunify/services/spotifyAuth.dart';
 import 'package:tunify/ui/screens/Editprofile.dart';
 
 import '../components/gNav.dart';
@@ -98,9 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  // Add your sign out or navigation functionality here
-                },
+                onPressed: () => loginWithSpotify(),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
                   onPrimary: Colors.black,
@@ -119,6 +118,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
+
             )
           ],
         ),
