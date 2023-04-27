@@ -10,8 +10,6 @@ import '../../services/spotify/spotify.dart';
 class Playlistpage extends StatelessWidget {
   const Playlistpage({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     return const MaterialApp();
@@ -30,13 +28,14 @@ class Playlist extends StatefulWidget {
 class _PlaylistState extends State<Playlist> {
   @override
   Widget build(BuildContext context) {
-    test() async {
-
-      return await  SpotifyService.getRecommendations();
-
+    test()  {
+      final list =  SpotifyService.getRecommendations();
+      return list;
     }
+
+    print(test());
     return Scaffold(
-      appBar: MyAppbar(),
+        appBar: MyAppbar(),
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
@@ -44,48 +43,16 @@ class _PlaylistState extends State<Playlist> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Container(
-                
                 margin: const EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 8.0),
-                
               ),
               Expanded(
                 child: ListView.builder(
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      
                       decoration: BoxDecoration(
-                        
                           border: Border.all(width: 7, color: Colors.white10),
                           borderRadius: BorderRadius.circular(10)),
-                      child:  ListView.builder(
-                      itemCount: test().then((value) => value.length),
-                        itemBuilder: (context, index) {
-                        
-
-
-                          CircleAvatar(
-                            backgroundColor: Colors.green,
-                            child: Icon(
-                              Icons.music_note,
-                              color: Colors.black,
-                            ),
-                          );
-                          title:
-                          Text(
-                            'Title',
-                            style: TextStyle(color: Colors.white24),
-                          );
-                          subtitle:
-                          Text('Artist ',
-                              style: TextStyle(color: Colors.white));
-                          trailing:
-                          Icon(
-                            Icons.more_vert,
-                            color: Colors.green,
-                          )
-                          ;
-                        }),
                     );
                   },
                 ),
