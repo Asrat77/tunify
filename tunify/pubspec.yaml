@@ -51,6 +51,8 @@ dependencies:
   flutter_locales: ^2.0.2
   spotify: ^0.11.0
   bloc: ^8.1.1
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.2
 
 
 dev_dependencies:
