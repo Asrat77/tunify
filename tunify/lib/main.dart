@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_locales/flutter_locales.dart';
+import 'package:tunify/bloc/spotifyBloc/spotify_bloc.dart';
 
 import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:tunify/ui/screens/language.dart';
@@ -38,23 +40,28 @@ class MyApp extends StatelessWidget {
 
     return LocaleBuilder(builder: (locale)=>
 
-   MaterialApp(
-    localizationsDelegates: Locales.delegates,
-          supportedLocales: Locales.supportedLocales,
-          locale: locale,
-        initialRoute: "/",
-        routes: {
-      "/": (context) => const Wrapper(),
-      "/pl": (context) => const Playlist(),
-         "/home": (context) => Home_Screen(),
-         "/q": (context) => const mode(),
-          "/settings": (context) => SettingsPage(),
-          "/Edit-profile": (context) => EditProfilePage(),
-           "/play": (context) => const play(),
-           "/ls":(context) =>const languageScreen(),
-          "/login":(context) =>const Login_Screen(),
+   MultiBlocProvider(
+     providers: [
+       BlocProvider(create: (context) => SpotifyBloc())
+     ],
+     child: MaterialApp(
+      localizationsDelegates: Locales.delegates,
+            supportedLocales: Locales.supportedLocales,
+            locale: locale,
+          initialRoute: "/",
+          routes: {
+        "/": (context) => const Wrapper(),
+        "/pl": (context) => const Playlist(),
+           "/home": (context) => Home_Screen(),
+           "/q": (context) => const mode(),
+            "/settings": (context) => SettingsPage(),
+            "/Edit-profile": (context) => EditProfilePage(),
+             "/play": (context) => const play(),
+             "/ls":(context) =>const languageScreen(),
+            "/login":(context) =>const Login_Screen(),
 
 
-    }));
+      }),
+   ));
   }
 }
