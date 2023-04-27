@@ -1,14 +1,8 @@
-class Track{
-  int id;
-  String spotify_uri;
-  String mood;
+class Track {
+  final String name;
+  final String imageUrl;
+  final List<String> artists;
 
-  Track(
-  {
-    required this.id,
-    required this.spotify_uri,
-    required this.mood,
-}
-      );
+  Track({required this.name, required this.artists, required this.imageUrl});
 
 }

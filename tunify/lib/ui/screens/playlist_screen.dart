@@ -4,9 +4,13 @@ import 'package:tunify/ui/components/appbar.dart';
 import 'package:tunify/ui/components/gNav.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
 
+import '../../services/spotify/spotify.dart';
+
 // ignore: camel_case_types
 class Playlistpage extends StatelessWidget {
   const Playlistpage({Key? key}) : super(key: key);
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,13 @@ class _PlaylistState extends State<Playlist> {
                         
                           border: Border.all(width: 7, color: Colors.white10),
                           borderRadius: BorderRadius.circular(10)),
-                      child: const ListTile(
+                      child: const ListView.builder(
+
+                        itemBuilder: (context, index) {
+
+                          int len = await SpotifyService.getRecommendations().then((value) => value.length) ;
+                        },
+                        itemCount:
                         leading: CircleAvatar(
                           backgroundColor: Colors.green,
                           child: Icon(
