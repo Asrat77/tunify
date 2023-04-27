@@ -156,104 +156,18 @@ class _Home_ScreenState extends State<Home_Screen> {
             ),
           ),
 
-Row(
-  mainAxisAlignment: MainAxisAlignment.start,
-  children: const [
-        Text('GOOD MORNING',style: TextStyle(color: CustomColors.primaryWhite,fontSize: 30,fontWeight: FontWeight.bold ),),
-  ],
-),
-
-
-
-  Expanded(
-            child: ListView.builder(
-                itemCount:_titles.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, index) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height*0.2,
-                        width: 200,
-                        child: Card(
-
-                          color: Colors.white10,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-
-                              children: [
-
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width*0.52,
-                                  height: MediaQuery.of(context).size.height*0.12,
-
-                                  child: Image.network(
-                                                    'https://i.pinimg.com/originals/c6/d3/12/c6d3125b04d046d3751e90390d7ecbe2.jpg',
-                                       fit: BoxFit.fitWidth,
-
-                                                    // _images[index],
-                                                  ),
-
-                                ),
-
-
-
-
-
-
-                                 Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                   children: const [
-                                     Text(
-                                               "new playlist",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 8,
-                                                  color: CustomColors.primaryWhite,
-                                                ),
-                                              ),
-                                              Text(
-                                            "subtitles,description",
-                                            style: TextStyle(color: CustomColors.primaryWhite),
-                                          ),
-
-
-                                   ],
-                                 ),
-                                       const Icon(Icons.add_sharp,color: CustomColors.primaryGreen,)
-                              ],
-                            )),
-                      ),
-
-                    ],
-
-                  );
-
-                }, ),
-
-          ),
-
-
-
 
 Row(
   mainAxisAlignment: MainAxisAlignment.start,
-
-  children: const [
+children: const [
 
         Text('Your top mixes',style: TextStyle(color: CustomColors.primaryGreen,fontSize: 40,fontWeight: FontWeight.bold),),
   ],
 ),
 
-
-
-
-
-
          Expanded(
            child: ListView.builder(
-             itemCount:2,
+             itemCount:_titles.length,
              itemBuilder: (BuildContext context, int index) {
              return
               Card(
@@ -276,11 +190,6 @@ Row(
                                      ),
 
                    ),
-
-
-
-
-
 
                     Column(
                      mainAxisAlignment: MainAxisAlignment.center,

@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         initialRoute: "/",
         routes: {
       "/": (context) => const Wrapper(),
-      "/pl": (context) => const Playlist(),
+      "/pl": (context) =>  Playlist(),
          "/home": (context) => Home_Screen(),
          "/q": (context) => const mode(),
           "/settings": (context) => SettingsPage(),
