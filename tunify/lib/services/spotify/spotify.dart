@@ -1,25 +1,32 @@
-// /*
-// library spotify;
-//
-// import 'dart:async';
-// import 'dart:convert';
-//
-// import 'package:http/http.dart' as http;
-// import 'package:oauth2/oauth2.dart' as oauth2;
-// import 'package:pedantic/pedantic.dart';
-// import 'package:spotify/spotify.dart';
-//
-// import '../spotify//models/_models.dart';
-//
-// export 'package:oauth2/oauth2.dart'
-//     show AuthorizationException, ExpirationException;
-//
-// export '../spotify//models/_models.dart';
-//
+
+library spotify;
+
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:oauth2/oauth2.dart' as oauth2;
+import 'package:pedantic/pedantic.dart';
+//import 'package:spotify/spotify.dart';
+
+import '../spotify//models/_models.dart';
+
+export 'package:oauth2/oauth2.dart'
+    show AuthorizationException, ExpirationException;
+
+export '../spotify//models/_models.dart';
+
+
+import '../spotifyAuth.dart';
+
+final client_id = "9fd6560fab6542b7bc370b2d173232b7";
+final client_secret = "99c592b55d5b4bbcac39db565cb085c0";
 //
 // final credentials = SpotifyApiCredentials("4b82df7828ac41f7a37f52dbf31675af", "f2d4240fbb61492ea5605106bfd9a492");
 // final spotify = SpotifyApi(credentials);
 // final artist =  spotify.artists.get('0OdUWJ0sBjDrqHygGUXeCF');
+
+
 //
 //
 // Future<String> getAccessToken() async {
@@ -51,40 +58,47 @@
 // }
 //
 //
-// void _getRecommendations() async {
-//   String accessToken = await getAccessToken();
-//
-//   Map<String, double> parameterValues = {
-//     'tempo': 0.5,
-//     'mode': 0.7,
-//     'speechiness': 0.2,
-//     'acousticness': 0.8,
-//     'instrumentalness': 0.1,
-//   };
-//
-//   String parameterString = '';
-//   parameterValues.forEach((parameter, normalizedScore) {
-//     parameterString += '$parameter:$normalizedScore,';
-//   });
-//   parameterString = parameterString.substring(0, parameterString.length - 1);
-//
-//   String url = 'https://api.spotify.com/v1/recommendations?$parameterString';
-//
-//   http.Response response = await http.get(
-//     Uri.parse(url),
-//     headers: {
-//       'Authorization': 'Bearer $accessToken',
-//     },
-//   );
-//
-//   if (response.statusCode == 200) {
-//     // parse the response and do something with the recommendations
-//   } else {
-//     throw Exception('Failed to get music recommendations.');
-//   }
-//
-// }
-//
+
+
+class SpotifyService{
+
+  static void _getRecommendations() async {
+
+  String accessToken = await getAccessToken(client_id,client_secret);
+
+  Map<String, double> parameterValues = {
+    'tempo': 0.5,
+    'mode': 0.7,
+    'speechiness': 0.2,
+    'acousticness': 0.8,
+    'instrumentalness': 0.1,
+  };
+
+  String parameterString = '';
+  parameterValues.forEach((parameter, normalizedScore) {
+    parameterString += '$parameter:$normalizedScore,';
+  });
+  parameterString = parameterString.substring(0, parameterString.length - 1);
+
+  String url = 'https://api.spotify.com/v1/recommendations?$parameterString';
+
+  http.Response response = await http.get(
+    Uri.parse(url),
+    headers: {
+      'Authorization': 'Bearer $accessToken',
+    },
+  );
+
+  if (response.statusCode == 200) {
+    print(response.body);
+    // parse the response and do something with the recommendations
+  } else {
+    throw Exception('Failed to get music recommendations.');
+  }
+
+}
+}
+
 //
 //
 // void main() async {

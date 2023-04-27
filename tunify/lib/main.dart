@@ -12,6 +12,7 @@ import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart' as pl;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tunify/ui/screens/rec.dart';
 import 'package:tunify/wrapper.dart';
 
 import 'package:tunify/ui/screens/Editprofile.dart';
@@ -41,24 +42,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     initUniLinks(context);
-    return MaterialApp(
+    return ChangeNotifierProvider(
+      create: (context) => RecommendationsProvider(),
 
-        initialRoute: "/",
-        routes: {
-      "/": (context) => const Wrapper(),
-      "/pl": (context) => const pl.Playlist(),
-         "/home": (context) => Home_Screen(),
-         "/q": (context) => const mode(),
-          "/settings": (context) => SettingsPage(),
-          "/Edit-profile": (context) => EditProfilePage(),
-          '/callback': (context) {
-        print("object");
-            final uri = ModalRoute.of(context)!.settings.arguments as Uri;
-            handleSpotifyCallback(uri.queryParameters['code']!);
-            return SettingsPage();
+      child: MaterialApp(
+
+          initialRoute: "/",
+          routes: {
+        "/": (context) => const Wrapper(),
+        "/pl": (context) => const pl.Playlist(),
+           "/home": (context) => Home_Screen(),
+           "/q": (context) => const mode(),
+            "/settings": (context) => SettingsPage(),
+           // "/rec": (context) = RecommendationsScreen(recommendations: recommendations)
+            "/Edit-profile": (context) => EditProfilePage(),
+            '/callback': (context) {
+          print("object");
+              final uri = ModalRoute.of(context)!.settings.arguments as Uri;
+              handleSpotifyCallback(uri.queryParameters['code']!);
+              return SettingsPage();
+            },
           },
-        },
-        );
+          ),
+    );
   }
 
 }

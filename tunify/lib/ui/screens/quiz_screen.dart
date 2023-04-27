@@ -2,6 +2,7 @@
 // import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'package:tunify/services/spotify/spotify.dart';
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -274,6 +275,9 @@ import 'package:tunify/ui/components/questionary.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../data/models/track.dart';
+import '../../services/spotifyAuth.dart';
+
 
 class mode extends StatefulWidget {
   const mode({super.key});
@@ -295,27 +299,27 @@ class _modeState extends State<mode> {
     'Chill',
     'Romantic',
   ];
-  Future<void> _generatePlaylist() async {
-    setState(() {
-      _isLoading = true;
-    });
-    final response = await http.get(Uri.parse(
-        'https://api.spotify.com/v1/playlists/37i9dQZF1DZ06evO2qz3Ol/tracks'));
-    final tracks = jsonDecode(response.body)['items'];
-    final List<String> songTitles = [];
-    for (final track in tracks) {
-      songTitles.add(track['track']['name']);
-    }
-    final playlistUrl =
-        'https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO2qz3Ol';
-    setState(() {
-      _isLoading = false;
-    });
-    await launch(playlistUrl);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Playlist generated successfully! Enjoy your music!'),
-    ));
-  }
+  // Future<void> _generatePlaylist() async {
+  //   setState(() {
+  //     _isLoading = true;
+  //   });
+  //   final response = await http.get(Uri.parse(
+  //       'https://api.spotify.com/v1/playlists/37i9dQZF1DZ06evO2qz3Ol/tracks'));
+  //   final tracks = jsonDecode(response.body)['items'];
+  //   final List<String> songTitles = [];
+  //   for (final track in tracks) {
+  //     songTitles.add(track['track']['name']);
+  //   }
+  //   final playlistUrl =
+  //       'https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO2qz3Ol';
+  //   setState(() {
+  //     _isLoading = false;
+  //   });
+  //   await launch(playlistUrl);
+  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //     content: Text('Playlist generated successfully! Enjoy your music!'),
+  //   ));
+  // }
 
   final lightTheme = ThemeData(
       brightness: Brightness.light,
@@ -500,8 +504,74 @@ class _modeState extends State<mode> {
                 backgroundColor: Colors.black,
                 fixedSize: Size(200, 50),
               ),
-              onPressed: () {
-                _isLoading ? null : _generatePlaylist();
+              onPressed: () async {
+                final client_id = "9fd6560fab6542b7bc370b2d173232b7";
+                final client_secret = "99c592b55d5b4bbcac39db565cb085c0";
+                String accessToken = await getAccessToken(client_id,client_secret);
+
+                 Map<String, double> parameterValues = {
+                   'tempo': 0.5,
+                'mode': 0.7,
+                   'speechiness': 0.2,
+                   'acousticness': 0.8,
+                   'instrumentalness': 0.1,
+                 };
+
+                 String parameterString = '';
+                 parameterValues.forEach((parameter, normalizedScore) {
+                   parameterString += '$parameter:$normalizedScore,';
+                 });
+                 parameterString = parameterString.substring(0, parameterString.length - 1);
+                String url = 'https://api.spotify.com/v1/recommendations?$parameterString';
+
+                var responsee = await http.get(
+                  Uri.parse('$url?limit=10 &seed_genres=acoustic'),
+                  headers: {'Authorization': 'Bearer $accessToken'},
+
+
+                );
+
+                http.Response response = await http.get(
+                  Uri.parse(url),
+                  headers: {
+                    'Authorization': 'Bearer $accessToken',
+                  },
+                );
+                print(responsee.body);
+
+
+                if (responsee.statusCode == 200) {
+
+                  var responseJson = jsonDecode(responsee.body);
+
+                  var trackList = <Track>[];
+                  var tracks = responseJson['tracks']['items'] as List<dynamic>;
+
+                  for (var trackJson in tracks) {
+                    var name = trackJson['name'] as String;
+                    var imageUrl = trackJson['album']['images'][0]['url'] as String;
+
+                    var artistNames = <String>[];
+                    var artists = trackJson['artists'] as List<dynamic>;
+                    for (var artistJson in artists) {
+                      artistNames.add(artistJson['name'] as String);
+                    }
+
+                    var track = Track(name: name, artists: artistNames, imageUrl: imageUrl);
+                    trackList.add(track);
+                  }
+
+
+                  print(responsee.body);
+                  Navigator.pushNamed(context, "routeName");
+                  // parse the response and do something with the recommendations
+                } else {
+                  throw Exception('Failed to get music recommendations.');
+                }
+
+
+
+
               },
               child: _isLoading
                   ? SpinKitCircle(color: Colors.green)

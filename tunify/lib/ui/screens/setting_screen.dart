@@ -99,7 +99,11 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () => loginWithSpotify(),
+                onPressed: () {
+                  final client_id = "9fd6560fab6542b7bc370b2d173232b7";
+                  final client_secret = "99c592b55d5b4bbcac39db565cb085c0";
+                  getAccessToken(client_id, client_secret);
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,
                   onPrimary: Colors.black,
