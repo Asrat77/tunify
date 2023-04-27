@@ -1,7 +1,5 @@
-
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
-
 
 import 'dart:async';
 import 'dart:convert';
@@ -11,10 +9,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/components/appbar.dart';
+import 'package:tunify/ui/components/gNav.dart';
 import 'package:tunify/ui/components/questionary.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 class mode extends StatefulWidget {
   const mode({super.key});
@@ -128,93 +126,92 @@ class _modeState extends State<mode> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-
-    
       theme: _islightmmode ? lightTheme : darkTheme,
       home: Scaffold(
-        appBar: MyAppbar(),
-        body: Column(children: [
-          Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width,
-            child: PageView.builder(
-              controller: _pageController1,
-              scrollDirection: Axis.horizontal,
-              itemCount: _titles.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    width: _cardWidth,
-                    child: Card(
-                      color: CustomColors.primaryBlack,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Image.network(
-                            _images[index],
-                            width: _cardWidth,
-                            fit: BoxFit.cover,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      _titles[index],
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                        color: CustomColors.primaryWhite,
+          appBar: MyAppbar(),
+          body: Column(children: [
+            Container(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              child: PageView.builder(
+                controller: _pageController1,
+                scrollDirection: Axis.horizontal,
+                itemCount: _titles.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: _cardWidth,
+                      child: Card(
+                        color: CustomColors.primaryBlack,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Image.network(
+                              _images[index],
+                              width: _cardWidth,
+                              fit: BoxFit.cover,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        _titles[index],
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: CustomColors.primaryWhite,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      _subtitles[index],
-                                      style: const TextStyle(color: CustomColors.primaryWhite),
-                                    ),
-                                  ],
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        _subtitles[index],
+                                        style: const TextStyle(
+                                            color: CustomColors.primaryWhite),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
-       
-          const Questionary(),
-          // ChoiceCarousel(),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 41.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: CustomColors.primaryBlack,
-                fixedSize: const Size(200, 50),
+                  );
+                },
               ),
-              onPressed: () {
-                _isLoading ? null : _generatePlaylist();
-              },
-              child: _isLoading
-                  ? const SpinKitCircle(color: CustomColors.primaryGreen)
-                  : const Text(
-                      'Generate Playlist',
-                      style: TextStyle(color: CustomColors.primaryGreen),
-                    ),
             ),
 
-          ),
-        ]),
-      ),
+            const Questionary(),
+            // ChoiceCarousel(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 41.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: CustomColors.primaryBlack,
+                  fixedSize: const Size(200, 50),
+                ),
+                onPressed: () {
+                  _isLoading ? null : _generatePlaylist();
+                },
+                child: _isLoading
+                    ? const SpinKitCircle(color: CustomColors.primaryGreen)
+                    : const Text(
+                        'Generate Playlist',
+                        style: TextStyle(color: CustomColors.primaryGreen),
+                      ),
+              ),
+            ),
+          ]),
+          bottomNavigationBar: buildgnav(context)),
     );
   }
 }

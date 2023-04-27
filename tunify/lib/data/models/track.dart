@@ -1,14 +1,16 @@
-class Track{
-  int id;
-  String spotify_uri;
-  String mood;
+import 'package:flutter/src/material/dropdown.dart';
+
+class Track {
+  final String name;
+  final String imageUrl;
+  final List<String> artists;
+  final String url;
 
   Track(
-  {
-    required this.id,
-    required this.spotify_uri,
-    required this.mood,
-}
-      );
+      {required this.name,
+      required this.artists,
+      required this.imageUrl,
+      required this.url});
 
+  static map(DropdownMenuItem<Object> Function(dynamic locale) param0) {}
 }
