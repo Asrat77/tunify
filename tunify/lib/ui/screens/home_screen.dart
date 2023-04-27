@@ -238,6 +238,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                   ),
                 ),
 
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: const [
@@ -247,6 +248,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                         color: CustomColors.primaryWhite,
                         fontSize: 40,
                       ),
+
                     ),
                   ],
                 ),

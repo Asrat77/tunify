@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
 
     return LocaleBuilder(builder: (locale)=>
 
+
    MultiBlocProvider(
      providers: [
        BlocProvider(create: (context) => SpotifyBloc())
@@ -63,5 +64,6 @@ class MyApp extends StatelessWidget {
 
       }),
    ));
+
   }
 }
