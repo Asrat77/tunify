@@ -10,7 +10,7 @@ import '../../services/spotify/spotify.dart';
 class Playlistpage extends StatelessWidget {
   const Playlistpage({Key? key}) : super(key: key);
 
-  
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,11 @@ class Playlist extends StatefulWidget {
 class _PlaylistState extends State<Playlist> {
   @override
   Widget build(BuildContext context) {
+    test() async {
+
+      return await  SpotifyService.getRecommendations();
+
+    }
     return Scaffold(
       appBar: MyAppbar(),
         backgroundColor: Colors.black,
@@ -53,31 +58,34 @@ class _PlaylistState extends State<Playlist> {
                         
                           border: Border.all(width: 7, color: Colors.white10),
                           borderRadius: BorderRadius.circular(10)),
-                      child: const ListView.builder(
-
+                      child:  ListView.builder(
+                      itemCount: test().then((value) => value.length),
                         itemBuilder: (context, index) {
+                        
 
-                          int len = await SpotifyService.getRecommendations().then((value) => value.length) ;
-                        },
-                        itemCount:
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.green,
-                          child: Icon(
-                            Icons.music_note,
-                            color: Colors.black,
-                          ),
-                        ),
-                        title: Text(
-                          'Title',
-                          style: TextStyle(color: Colors.white24),
-                        ),
-                        subtitle: Text('Artist ',
-                            style: TextStyle(color: Colors.white)),
-                        trailing: Icon(
-                          Icons.more_vert,
-                          color: Colors.green,
-                        ),
-                      ),
+
+                          CircleAvatar(
+                            backgroundColor: Colors.green,
+                            child: Icon(
+                              Icons.music_note,
+                              color: Colors.black,
+                            ),
+                          );
+                          title:
+                          Text(
+                            'Title',
+                            style: TextStyle(color: Colors.white24),
+                          );
+                          subtitle:
+                          Text('Artist ',
+                              style: TextStyle(color: Colors.white));
+                          trailing:
+                          Icon(
+                            Icons.more_vert,
+                            color: Colors.green,
+                          )
+                          ;
+                        }),
                     );
                   },
                 ),
