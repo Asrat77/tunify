@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/components/appbar.dart';
 import 'package:tunify/ui/components/gNav.dart';
@@ -139,11 +140,20 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                   ),
                                                 ),
                                                 const SizedBox(height: 4),
-                                                Text(
-                                                  item.name,
-                                                  style: const TextStyle(
-                                                      color: CustomColors
-                                                          .primaryWhite),
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.43,
+                                                  child: Text(
+                                                    item.name,
+                                                    softWrap: true,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: const TextStyle(
+                                                        color: CustomColors
+                                                            .primaryWhite),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -165,8 +175,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: const [
-                    Text(
-                      'GOOD MORNING',
+                    LocaleText(
+                      "goodmorning",
                       style: TextStyle(
                           color: CustomColors.primaryWhite,
                           fontSize: 30,
@@ -218,10 +228,19 @@ class _Home_ScreenState extends State<Home_Screen> {
                                         //     color: CustomColors.primaryWhite,
                                         //   ),
                                         // ),
-                                        Text(
-                                          item.name,
-                                          style: TextStyle(
-                                              color: CustomColors.primaryWhite),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.52,
+                                          child: Text(
+                                            item.name,
+                                            softWrap: true,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                color:
+                                                    CustomColors.primaryWhite),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -238,17 +257,17 @@ class _Home_ScreenState extends State<Home_Screen> {
                   ),
                 ),
 
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Your top mixes',
-                      style: TextStyle(
-                        color: CustomColors.primaryWhite,
-                        fontSize: 40,
+                  children: [
+                    Container(
+                      child: LocaleText(
+                        "yourtopmixes",
+                        style: TextStyle(
+                          color: CustomColors.primaryWhite,
+                          fontSize: 25,
+                        ),
                       ),
-
                     ),
                   ],
                 ),
@@ -290,9 +309,16 @@ class _Home_ScreenState extends State<Home_Screen> {
                                           color: CustomColors.primaryWhite,
                                         ),
                                       ),
-                                      Text(
-                                        item.name,
-                                        style: TextStyle(color: Colors.white),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.62,
+                                        child: Text(
+                                          item.name,
+                                          softWrap: true,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ],
                                   ),

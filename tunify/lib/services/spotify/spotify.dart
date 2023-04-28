@@ -11,8 +11,8 @@ import '../../data/models/track.dart';
 
 class SpotifyService {
   static Future<List<Track>> getRecommendations() async {
-    const clientId = "9fd6560fab6542b7bc370b2d173232b7";
-    const clientSecret = "99c592b55d5b4bbcac39db565cb085c0";
+    const clientId = " 63826f35dfc74efe802bd89fa3c24ede";
+    const clientSecret = "21e0e5a240774dde94fae2ecbd726e5d";
 
     String accessToken = await getAccessToken(clientId, clientSecret);
 
@@ -33,7 +33,7 @@ class SpotifyService {
     String url = 'https://api.spotify.com/v1/recommendations?$parameterString';
 
     var response = await http.get(
-      Uri.parse('$url?limit=10 &seed_genres=acoustic'),
+      Uri.parse('$url?limit=10 &seed_genres=pop'),
       headers: {'Authorization': 'Bearer $accessToken'},
     );
 

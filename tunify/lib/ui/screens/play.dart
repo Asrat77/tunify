@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tunify/bloc/spotifyBloc/spotify_bloc.dart';
 import 'package:tunify/ui/components/gNav.dart';
@@ -85,11 +86,11 @@ class _playState extends State<play> {
                                     
                                     child: Image.network(item.imageUrl,))),
                               ),
-                              title: Text(
-                                'Title',
+                              title: LocaleText(
+                                'title',
                                 style: TextStyle(color: Colors.white24),
                               ),
-                              subtitle: Text('Artist ',
+                              subtitle: LocaleText('artist',
                                   style: TextStyle(color: Colors.white)),
                               trailing: Icon(
                                 Icons.more_vert,

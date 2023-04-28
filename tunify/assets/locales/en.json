@@ -1,7 +1,7 @@
 {"localization":"Localization",
 "sign_in" : "Sign In",
 "setting" : "setting",
-"good_morning" : "Good Morning",
+"goodmorning" : "Good Morning",
 "no_acc" : "no account yet ?",
 "account" : "Account",
 "home" : "Home",
@@ -18,6 +18,12 @@
 "english":"English",
 "spanish":"Spanish",
 "arabic":"Arabic",
-"currentlanguageis":"Current Language is :"
+"currentlanguageis":"Current Language is :",
+"editprofile":"Edit Profile",
+"cancel":"CANCEL",
+"language":"language",
+"notifications":"Notifications",
+"colormode":"color mode",
+"signout":"SIGN OUT"
 
 }

@@ -1,11 +1,11 @@
 {"localization":"Localization",
 "sign_in" : "ግባ",
 "setting" : "ቅንብር",
-"good_morning" : "ምልካም እድል",
+"goodmorning" : "መልካም ጠዋት",
 "no_acc" : "ምንም መለያ የለም ?",
 "account" : "መለያ",
 "home" : "መግቢያ",
-"create" : "መግቢያ",
+"create" : "መፍጠር",
 "myplaylist" : "አጫዋች ዝርዝር",
 "title":"ርዕስ",
 "artist":"አርቲስት" ,
@@ -18,7 +18,13 @@
 "english":"እንግሊዝኛ",
 "spanish":"ስፓኒሽ",
 "arabic":"አረብኛ",
-"currentlanguageis":"አሁን ያለው ቋንቋ  :"
+"currentlanguageis":"አሁን ያለው ቋንቋ  :",
+"editprofile":"መገለጫ አርትዕ",
+"cancel":"ሰርዝ",
+"notifications":"ማሳወቂያዎች",
+"language":"ቋንቋ",
+"colormode":"የቀለም ሁነታ",
+"signout":"SIGN OUT"
 
 
 
