@@ -5,6 +5,7 @@ import 'package:tunify/bloc/spotifyBloc/spotify_bloc.dart';
 
 import 'package:tunify/ui/screens/home_screen.dart';
 import 'package:tunify/ui/screens/language.dart';
+import 'package:tunify/ui/screens/liked-songs.dart';
 import 'package:tunify/ui/screens/login_screen.dart';
 import 'package:tunify/ui/screens/play.dart';
 import 'package:tunify/ui/screens/playlist_screen.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
        BlocProvider(create: (context) => SpotifyBloc())
      ],
      child: MaterialApp(
+       debugShowCheckedModeBanner: false,
       localizationsDelegates: Locales.delegates,
             supportedLocales: Locales.supportedLocales,
             locale: locale,
@@ -58,6 +60,7 @@ class MyApp extends StatelessWidget {
             "/settings": (context) => SettingsPage(),
             "/Edit-profile": (context) => EditProfilePage(),
              "/play": (context) => const play(),
+            "liked-songs": (context) => const LikedSongs(),
              "/ls":(context) =>const languageScreen(),
             "/login":(context) =>const Login_Screen(),
 
