@@ -12,5 +12,25 @@ class Track {
       required this.imageUrl,
       required this.url});
 
+  // Convert Track object to JSON map
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'imageUrl': imageUrl,
+    'artists': artists,
+    'url': url,
+  };
+
+  // Create a Track object from JSON map
+  factory Track.fromJson(Map<String, dynamic> json) {
+    return Track(
+      name: json['name'],
+      imageUrl: json['imageUrl'],
+      artists: List<String>.from(json['artists']),
+      url: json['url'],
+    );
+  }
+
+
+
   static map(DropdownMenuItem<Object> Function(dynamic locale) param0) {}
 }
