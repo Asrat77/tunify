@@ -22,3 +22,19 @@ class TrackEvent extends SpotifyEvent{
 
   get data => track;
 }
+
+
+class LikedEvent extends SpotifyEvent{
+  final Track track;
+
+  const LikedEvent(
+  this.track,);
+
+
+  @override
+  List<Object> get props => [];
+
+  get data => track;
+
+}
+

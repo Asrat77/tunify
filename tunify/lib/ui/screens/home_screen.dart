@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spotify/spotify.dart';
 import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/components/appbar.dart';
 import 'package:tunify/ui/components/gNav.dart';
@@ -16,6 +17,8 @@ class Home_Screen extends StatefulWidget {
 }
 
 class _Home_ScreenState extends State<Home_Screen> {
+
+  int iterator = 0;
   final List<String> _titles = [
     'playlist1',
     'playlist2',
@@ -180,6 +183,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                     itemCount: state.tracks.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, index) {
+                      final Track track = state.tracks![iterator];
+
                       final item = state.tracks[index];
                       return Column(
                         children: [
@@ -225,10 +230,20 @@ class _Home_ScreenState extends State<Home_Screen> {
                                         ),
                                       ],
                                     ),
-                                    const Icon(
-                                      Icons.add_sharp,
+                                    const IconButton(
+                                      icon: Icon(Icons.add_sharp),
+                                      onPressed:()
+                                      {
+                                      },
+
+
+
+
+
                                       color: CustomColors.primaryGreen,
+
                                     )
+                                    
                                   ],
                                 )),
                           ),
