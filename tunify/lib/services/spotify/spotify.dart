@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-
 import 'package:http/http.dart' as http;
 import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:pedantic/pedantic.dart';
@@ -10,12 +9,12 @@ import 'package:tunify/services/spotify/spotifyAuth.dart';
 import '../../data/models/track.dart';
 //import 'package:spotify/spotify.dart';
 
-
-class SpotifyService{
-
+class SpotifyService {
   static Future<List<Track>> getRecommendations() async {
+    const clientId = "9fd6560fab6542b7bc370b2d173232b7";
+    const clientSecret = "99c592b55d5b4bbcac39db565cb085c0";
 
-    String accessToken = await getAccessToken(client_id,client_secret);
+    String accessToken = await getAccessToken(clientId, clientSecret);
 
     Map<String, double> parameterValues = {
       'tempo': 0.5,
@@ -36,8 +35,6 @@ class SpotifyService{
     var response = await http.get(
       Uri.parse('$url?limit=10 &seed_genres=acoustic'),
       headers: {'Authorization': 'Bearer $accessToken'},
-
-
     );
 
     // http.Response response = await http.get(
@@ -48,36 +45,29 @@ class SpotifyService{
     // );
 
     if (response.statusCode == 200) {
-      print(response.body);
       var responseJson = jsonDecode(response.body);
-
-
-
+      // print(responseJson['tracks']);
       var trackList = <Track>[];
-      var tracks = responseJson['tracks']['items'] as List<dynamic>;
+      // var tracks = responseJson['tracks']['items'] as List<dynamic>;
 
-
-      for (var trackJson in tracks) {
-        var name = trackJson['name'] as String;
-        var imageUrl = trackJson['album']['images'][0]['url'] as String;
+      for (var trackJson in responseJson['tracks']) {
+        var name = trackJson['album']['name'];
+        var imageUrl = trackJson['album']['images'][0]['url'];
 
         var artistNames = <String>[];
         var artists = trackJson['artists'] as List<dynamic>;
         for (var artistJson in artists) {
           artistNames.add(artistJson['name'] as String);
         }
-        var track = Track(name: name, artists: artistNames, imageUrl: imageUrl);
+        var url = trackJson['album']['external_urls']['spotify'];
+        var track = Track(
+            name: name, artists: artistNames, imageUrl: imageUrl, url: url);
         trackList.add(track);
       }
 
-
       return trackList;
-
-
-
     } else {
       throw Exception('Failed to get music recommendations.');
     }
-
   }
 }

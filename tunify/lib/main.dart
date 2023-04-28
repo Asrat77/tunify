@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => const Wrapper(),
         "/pl": (context) => const Playlist(),
            "/home": (context) => Home_Screen(),
-           "/q": (context) => const mode(),
+           "/q": (context) =>  mode(),
             "/settings": (context) => SettingsPage(),
             "/Edit-profile": (context) => EditProfilePage(),
              "/play": (context) => const play(),
