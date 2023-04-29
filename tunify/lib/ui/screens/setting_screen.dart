@@ -15,13 +15,14 @@ class SettingsPage extends StatefulWidget {
 
 final user = FirebaseAuth.instance.currentUser!;
 
- Auth auth = Auth();
+Auth auth = Auth();
 
-  void _signOut(BuildContext context) async {
-    FirebaseAuth.instance.signOut().
-    then((value) {
-      Navigator.of(context).popAndPushNamed('/login');
-    });}
+void _signOut(BuildContext context) async {
+  FirebaseAuth.instance.signOut().then((value) {
+    Navigator.of(context).popAndPushNamed('/login');
+  });
+}
+
 final lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: Colors.green,
@@ -58,7 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: ListView(
                 children: [
                   Text(
-                    "home",
+                    "setting",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -73,8 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       SizedBox(
                         width: 8,
                       ),
-                      
-                      Text( 
+                      Text(
                         "account",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
@@ -88,7 +88,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  buildAccountOptionRow(context,Locales.string(context,  "editprofile"),),
+                  buildAccountOptionRow(
+                    context,
+                    Locales.string(context, "editprofile"),
+                  ),
                   Divider(
                     height: 15,
                     thickness: 2,
@@ -96,7 +99,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   SizedBox(
                     height: 10,
                   ),
-                        buildAccountOptionRow(context,Locales.string(context, "language"),),
+                  buildlanguageOptionRow(
+                    context,
+                    Locales.string(context, "language"),
+                  ),
                   SizedBox(
                     height: 40,
                   ),
@@ -123,7 +129,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  buildNotificationOptionRow(Locales.string(context, "colormode"),),
+                  buildNotificationOptionRow(
+                    Locales.string(context, "colormode"),
+                  ),
                   SizedBox(
                     height: 50,
                   ),
@@ -142,7 +150,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         padding: EdgeInsets.symmetric(horizontal: 40),
                       ),
-                      child:  Text(
+                      child: Text(
                         'signout',
                         style: TextStyle(
                           fontSize: 16,

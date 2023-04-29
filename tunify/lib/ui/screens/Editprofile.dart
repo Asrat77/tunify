@@ -123,7 +123,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
               Center(
                 child: Stack(
                   children: [
-                  
                     CircleAvatar(
                       radius: 100,
                       backgroundColor: Colors.grey,

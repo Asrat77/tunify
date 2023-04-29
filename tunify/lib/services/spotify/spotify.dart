@@ -10,9 +10,9 @@ import '../../data/models/track.dart';
 //import 'package:spotify/spotify.dart';
 
 class SpotifyService {
-  static Future<List<Track>> getRecommendations() async {
-    const clientId = " 63826f35dfc74efe802bd89fa3c24ede";
-    const clientSecret = "21e0e5a240774dde94fae2ecbd726e5d";
+  static Future<List<Track>> getRecommendations(String genre) async {
+    const clientId = "a261f7631878463681eac1038e528860";
+    const clientSecret = "0ea7cd4598ee431f966757bb2fdde49b";
 
     String accessToken = await getAccessToken(clientId, clientSecret);
 
@@ -31,12 +31,13 @@ class SpotifyService {
     parameterString = parameterString.substring(0, parameterString.length - 1);
 
     String url = 'https://api.spotify.com/v1/recommendations?$parameterString';
-
+    print(genre);
     var response = await http.get(
-      Uri.parse('$url?limit=10 &seed_genres=pop'),
+      Uri.parse(
+          '$url?limit=10 &seed_genres=${genre == "" ? "acoustic" : genre.toLowerCase()}'),
       headers: {'Authorization': 'Bearer $accessToken'},
     );
-
+    
     // http.Response response = await http.get(
     //   Uri.parse(url),
     //   headers: {
@@ -46,6 +47,7 @@ class SpotifyService {
 
     if (response.statusCode == 200) {
       var responseJson = jsonDecode(response.body);
+      print(responseJson);
       // print(responseJson['tracks']);
       var trackList = <Track>[];
       // var tracks = responseJson['tracks']['items'] as List<dynamic>;

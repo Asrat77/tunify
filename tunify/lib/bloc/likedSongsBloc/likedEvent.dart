@@ -1,7 +1,7 @@
 part of 'likedBloc.dart';
 
 
-abstract class DownloadEvent extends Equatable {
+abstract class DownloadEvent {
   const DownloadEvent();
 
   @override
