@@ -38,7 +38,14 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
             Icons.account_circle_outlined,
             size: 33,
           ),
-        )
+        ),
+        IconButton(
+
+            icon: Icon(
+            Icons.favorite_border
+        ),
+          onPressed: () { Navigator.pushNamed(context, "/liked-songs");
+              },)
       ],
     );
   }

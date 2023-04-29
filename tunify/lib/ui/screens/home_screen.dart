@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify/spotify.dart';
+import 'package:spotify/spotify.dart' as sp;
 import 'package:tunify/constants/custom_colors.dart';
 import 'package:tunify/ui/components/appbar.dart';
 import 'package:tunify/ui/components/gNav.dart';
 
 import '../../bloc/spotifyBloc/spotify_bloc.dart';
+import '../../data/models/track.dart';
 
 class Home_Screen extends StatefulWidget {
   const Home_Screen({super.key});
@@ -183,7 +184,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                     itemCount: state.tracks.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, index) {
-                      final Track track = state.tracks![iterator];
+
 
                       final item = state.tracks[index];
                       return Column(
@@ -230,11 +231,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                                         ),
                                       ],
                                     ),
-                                    const IconButton(
-                                      icon: Icon(Icons.add_sharp),
-                                      onPressed:()
-                                      {
-                                      },
+                                    const Icon(
+                                       Icons.add_sharp,
 
 
 
@@ -273,7 +271,9 @@ class _Home_ScreenState extends State<Home_Screen> {
                     itemCount: state.tracks.length,
                     itemBuilder: (BuildContext context, int index) {
                       final item = state.tracks[index];
+                      final Track trackList = state.tracks[iterator];
                       return GestureDetector(
+
                           onTap: () {
                             Navigator.pushNamed(context, '/pl');
                           },
@@ -297,7 +297,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "new playlist",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -311,10 +311,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                                       ),
                                     ],
                                   ),
-                                  const Icon(
-                                    Icons.add_sharp,
-                                    color: CustomColors.primaryGreen,
-                                  )
+
+                                  IconButton(onPressed: () {BlocProvider.of<SpotifyBloc>(context)
+                                  .add(LikedEvent(track: trackList)); print("object");},
+
+                                      icon: const Icon(Icons.add_sharp))
                                 ],
                               )));
                     },

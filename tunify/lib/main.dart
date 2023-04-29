@@ -46,15 +46,16 @@ class MyApp extends StatelessWidget {
        BlocProvider(create: (context) => SpotifyBloc())
      ],
      child: MaterialApp(
+       debugShowCheckedModeBanner: false,
       localizationsDelegates: Locales.delegates,
             supportedLocales: Locales.supportedLocales,
             locale: locale,
           initialRoute: "/",
           routes: {
         "/": (context) => const Wrapper(),
-        "/pl": (context) => const Playlist(),
-           "/home": (context) => Home_Screen(),
-           "/q": (context) =>  mode(),
+        "/liked-songs": (context) => const Playlist(),
+           "/home": (context) => const Home_Screen(),
+           "/q": (context) =>  const mode(),
             "/settings": (context) => SettingsPage(),
             "/Edit-profile": (context) => EditProfilePage(),
              "/play": (context) => const play(),

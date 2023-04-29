@@ -27,8 +27,8 @@ class TrackEvent extends SpotifyEvent{
 class LikedEvent extends SpotifyEvent{
   final Track track;
 
-  const LikedEvent(
-  this.track,);
+  const LikedEvent({required this.track,}
+  );
 
 
   @override
