@@ -34,11 +34,13 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             Navigator.pushNamed(context, '/settings');
           },
+
           icon: const Icon(
             Icons.account_circle_outlined,
             size: 33,
           ),
         ),
+
         IconButton(
 
             icon: Icon(
@@ -46,6 +48,13 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
         ),
           onPressed: () { Navigator.pushNamed(context, "/liked-songs");
               },)
+
+        IconButton(onPressed: (){
+          Navigator.pushNamed(context, "liked-songs");
+
+        }, icon: Icon(Icons.favorite))
+
+
       ],
     );
   }

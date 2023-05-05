@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 
 late final String title;
 
@@ -32,23 +33,23 @@ Widget buildgnav(BuildContext context) {
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,
-        items: const <BottomNavigationBarItem>[
+        items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
             ),
-            label: 'Home',
+            label: Locales.string(context,'Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add_circle,
               size: 40,
             ),
-            label: 'create',
+            label: Locales.string(context, "create"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.playlist_add_circle),
-            label: 'playlist',
+            label:Locales.string(context,'playlist'),
           ),
         ],
       ),

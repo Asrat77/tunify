@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_locales/flutter_locales.dart';
 import 'package:tunify/services/auth.dart';
 
 import 'package:tunify/ui/screens/Editprofile.dart';
@@ -14,13 +15,14 @@ class SettingsPage extends StatefulWidget {
 
 final user = FirebaseAuth.instance.currentUser!;
 
- Auth auth = Auth();
+Auth auth = Auth();
 
-  void _signOut(BuildContext context) async {
-    FirebaseAuth.instance.signOut().
-    then((value) {
-      Navigator.of(context).popAndPushNamed('/login');
-    });}
+void _signOut(BuildContext context) async {
+  FirebaseAuth.instance.signOut().then((value) {
+    Navigator.of(context).popAndPushNamed('/login');
+  });
+}
+
 final lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: Colors.green,
@@ -86,7 +88,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  buildAccountOptionRow(context, "Edit profile"),
+                  buildAccountOptionRow(
+                    context,
+                    Locales.string(context, "editprofile"),
+                  ),
                   Divider(
                     height: 15,
                     thickness: 2,
@@ -94,7 +99,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  buildlanguageOptionRow(context, "Language"),
+                  buildlanguageOptionRow(
+                    context,
+                    Locales.string(context, "language"),
+                  ),
                   SizedBox(
                     height: 40,
                   ),
@@ -108,7 +116,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         width: 8,
                       ),
                       Text(
-                        "Notifications",
+                        "notifications",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
@@ -121,7 +129,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  buildNotificationOptionRow("mode"),
+                  buildNotificationOptionRow(
+                    Locales.string(context, "colormode"),
+                  ),
                   SizedBox(
                     height: 50,
                   ),
@@ -141,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         padding: EdgeInsets.symmetric(horizontal: 40),
                       ),
                       child: Text(
-                        'SIGN OUT',
+                        'signout',
                         style: TextStyle(
                           fontSize: 16,
                           letterSpacing: 2.2,

@@ -22,7 +22,18 @@ class SpotifyBloc extends Bloc<SpotifyEvent, SpotifyState> {
       emit(SpotifyLoading());
 
       try {
-        final activity = await SpotifyService.getRecommendations();
+        final activity = await SpotifyService.getRecommendations('');
+        emit(SpotifySuccessState(tracks: activity));
+      } catch (e) {
+        print(e);
+      }
+    });
+
+    on<RecomendEvent>((event, emit) async {
+      emit(SpotifyLoading());
+
+      try {
+        final activity = await SpotifyService.getRecommendations(event.data);
         emit(SpotifySuccessState(tracks: activity));
       } catch (e) {
         print(e);
