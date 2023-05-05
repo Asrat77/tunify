@@ -38,3 +38,9 @@ class LikedEvent extends SpotifyEvent{
 
 }
 
+class LikedSongsFetchEvent extends SpotifyEvent{
+  const LikedSongsFetchEvent();
+  @override
+  List<Object> get props => [];
+}
+

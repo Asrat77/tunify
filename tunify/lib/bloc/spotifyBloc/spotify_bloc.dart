@@ -35,5 +35,7 @@ class SpotifyBloc extends Bloc<SpotifyEvent, SpotifyState> {
         _service.saveLiked(event.data),
       }
     });
+    on<LikedSongsFetchEvent>((event, emit) async {
+      _service.readLiked();}
+      );}
   }
-}
