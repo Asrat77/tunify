@@ -34,7 +34,7 @@ class _PlaylistState extends State<Playlist> {
     return BlocBuilder<SpotifyBloc, SpotifyState>(
       builder: (context, state) {
         if (state is SpotifyInitial) {
-          BlocProvider.of<SpotifyBloc>(context).add(FetchEvent());
+          BlocProvider.of<SpotifyBloc>(context).add(const LikedSongsFetchEvent());
         }
         if (state is SpotifyLoading) {
           return const Center(

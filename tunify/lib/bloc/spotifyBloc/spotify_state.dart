@@ -39,3 +39,5 @@ class SpotifyFailState extends SpotifyState {
   // TODO: implement props
   List<Object> get props => [];
 }
+
+class LikedIsEmptyState extends SpotifyState{}

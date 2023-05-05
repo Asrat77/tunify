@@ -40,10 +40,20 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
             size: 33,
           ),
         ),
+
+        IconButton(
+
+            icon: Icon(
+            Icons.favorite_border
+        ),
+          onPressed: () { Navigator.pushNamed(context, "/liked-songs");
+              },)
+
         IconButton(onPressed: (){
           Navigator.pushNamed(context, "liked-songs");
 
         }, icon: Icon(Icons.favorite))
+
 
       ],
     );

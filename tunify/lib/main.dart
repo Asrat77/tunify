@@ -66,9 +66,35 @@ class MyApp extends StatelessWidget {
 class SpotifySplashScreen extends StatefulWidget {
   const SpotifySplashScreen({super.key});
 
+
+    return LocaleBuilder(builder: (locale)=>
+
+
+   MultiBlocProvider(
+     providers: [
+       BlocProvider(create: (context) => SpotifyBloc())
+     ],
+     child: MaterialApp(
+       debugShowCheckedModeBanner: false,
+      localizationsDelegates: Locales.delegates,
+            supportedLocales: Locales.supportedLocales,
+            locale: locale,
+          initialRoute: "/",
+          routes: {
+        "/": (context) => const Wrapper(),
+        "/liked-songs": (context) => const Playlist(),
+           "/home": (context) => const Home_Screen(),
+           "/q": (context) =>  const mode(),
+            "/settings": (context) => SettingsPage(),
+            "/Edit-profile": (context) => EditProfilePage(),
+             "/play": (context) => const play(),
+             "/ls":(context) =>const languageScreen(),
+            "/login":(context) =>const Login_Screen(),
+
   @override
   _SpotifySplashScreenState createState() => _SpotifySplashScreenState();
 }
+
 
 class _SpotifySplashScreenState extends State<SpotifySplashScreen> {
   @override
