@@ -37,7 +37,7 @@ class SpotifyService {
           '$url?limit=10 &seed_genres=${genre == "" ? "acoustic" : genre.toLowerCase()}'),
       headers: {'Authorization': 'Bearer $accessToken'},
     );
-    
+
     // http.Response response = await http.get(
     //   Uri.parse(url),
     //   headers: {
